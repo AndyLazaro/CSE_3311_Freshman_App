@@ -7,4 +7,4 @@ This read me file will have information about updates, features, and authors
 _______________________________________________________________________________________________________
 
 
-
+Jane Cho
