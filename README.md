@@ -4,6 +4,7 @@ This app is created for new freshman or transfer students to show all UTA clubs 
 
 This read me file will have information about updates, features, and authors
 
+Jane Cho
 _______________________________________________________________________________________________________
 
 
