@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "41185121992",
+    "project_id": "freshmen-app",
+    "storage_bucket": "freshmen-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41185121992:android:95eae64afcaf85632337fd",
+        "android_client_info": {
+          "package_name": "com.example.cse_3311_freshman_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41185121992-mqir6f0dcb583rptkmkh95huqducrf6t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cse_3311_freshman_app",
+            "certificate_hash": "b24f596f071170cf991961e290a2521221af71dd"
+          }
+        },
+        {
+          "client_id": "41185121992-d01ah6n1qd28u8sm6id1imhitmfspoj0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl-eAyZUKWAkTwpDpFqm83aAHZ8sr0TJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41185121992-d01ah6n1qd28u8sm6id1imhitmfspoj0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

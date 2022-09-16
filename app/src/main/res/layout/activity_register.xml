@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/utawhite"
+    tools:context=".RegisterActivity">
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="MavMatch"-->
+<!--        android:textColor="@color/utablack"-->
+<!--        android:textSize="40sp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:layout_marginBottom="70dp"/>-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:hint="Email:"
+        android:textColorHint="@color/utagrey"
+        android:textColor="@color/utablack"
+        android:drawableStart="@drawable/email_input"
+        android:drawablePadding="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/register_email_et"
+        android:drawableLeft="@drawable/email_input"
+        android:background="@drawable/custom_input"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:hint="Password:"
+        android:textColorHint="@color/utagrey"
+        android:textColor="@color/utablack"
+        android:drawableStart="@drawable/password_input"
+        android:drawablePadding="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/register_password_et"
+        android:drawableLeft="@drawable/password_input"
+        android:background="@drawable/custom_input"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:hint="Confirm Password:"
+        android:textColorHint="@color/utagrey"
+        android:textColor="@color/utablack"
+        android:drawableStart="@drawable/password_input"
+        android:drawablePadding="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/register_confirm_password_et"
+        android:drawableLeft="@drawable/password_input"
+        android:background="@drawable/custom_input"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="Register"
+        android:layout_margin="10dp"
+        android:id="@+id/button_register"
+        android:textSize="25dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="Login"
+        android:layout_margin="10dp"
+        android:id="@+id/signup_to_login"
+        android:textSize="25dp" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar_register"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/utaorange"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:visibility="invisible"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

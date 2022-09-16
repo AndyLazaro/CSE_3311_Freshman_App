@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name = "utaorange">#F58025</color>
+    <color name = "utawhite">#FFFFFF</color>
+    <color name = "utablue">#0064b1</color>
+    <color name = "utablack">#000000</color>
+    <color name = "utagrey">#939598</color>
 </resources>
