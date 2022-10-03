@@ -16,7 +16,6 @@
         android:gravity="center_horizontal"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textColor="@color/utablack"
         android:textSize="40sp" />
 
     <EditText
