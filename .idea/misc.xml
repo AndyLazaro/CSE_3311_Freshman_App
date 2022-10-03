@@ -3,19 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_button.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_input.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/email_highlighted.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/email_input.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/password_highlighted.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/drawable/password_input.xml" value="0.48" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_login.xml" value="0.559375" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_main.xml" value="0.559375" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_register.xml" value="0.559375" />
-        <entry key="..\:/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/test.xml" value="0.559375" />
         <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_button.xml" value="0.175" />
         <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_input.xml" value="0.175" />
         <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/email_highlighted.xml" value="0.175" />
