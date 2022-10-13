@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:hint="Email:"
+        android:hint="email@mavs.uta.edu"
         android:textColorHint="@color/utagrey"
         android:textColor="@color/utablack"
         android:drawableStart="@drawable/email_input"
@@ -63,6 +63,15 @@
         android:drawableLeft="@drawable/password_input"
         android:background="@drawable/custom_input"
         android:inputType="textPassword" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:text="Show Passwords"
+        android:textColor="@color/utaorange"
+        android:buttonTint="@color/utaorange"
+        android:id="@+id/register_showpass"/>
 
     <Button
         android:layout_width="match_parent"

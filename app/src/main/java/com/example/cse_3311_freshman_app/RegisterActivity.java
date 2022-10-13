@@ -6,8 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -22,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText emailEt, passwordEt, confirm_passwordEt;
     Button registerBtn, loginBtn;
+    CheckBox showPass;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
 
@@ -34,16 +40,38 @@ public class RegisterActivity extends AppCompatActivity {
         emailEt = findViewById(R.id.register_email_et);
         passwordEt = findViewById(R.id.register_password_et);
         confirm_passwordEt = findViewById(R.id.register_confirm_password_et);
+        showPass = findViewById(R.id.register_showpass);
         registerBtn = findViewById(R.id.button_register);
         loginBtn = findViewById(R.id.signup_to_login);
         progressBar = findViewById(R.id.progressbar_register);
         mAuth = FirebaseAuth.getInstance();
+
+        showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
+                {
+                    passwordEt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    confirm_passwordEt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else
+                {
+                    passwordEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    confirm_passwordEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
 
         //Register button handles input and creates user
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = emailEt.getText().toString();
+                //Check to see if email address is from UTA only
+//                if (!email.contains("@mavs.uta.edu") && !email.contains("@uta.edu"))
+//                {
+//                    email = "badEmail";
+//                }
                 String password = passwordEt.getText().toString();
                 String confirm_password = confirm_passwordEt.getText().toString();
 
@@ -58,7 +86,16 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                 {
-                                    moveToMain();
+                                    //Send verify email to email address, must be verified in order to log in to app
+                                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(RegisterActivity.this, "Please Verify Email Sent", Toast.LENGTH_SHORT).show();
+                                            FirebaseAuth.getInstance().signOut();
+                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                            finish();
+                                        }
+                                    });
                                     progressBar.setVisibility(View.INVISIBLE);
                                 }
                                 else
