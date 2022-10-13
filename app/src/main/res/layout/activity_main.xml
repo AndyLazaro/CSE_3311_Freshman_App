@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="75dp"
+    android:layout_marginBottom="10dp"
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:id="@+id/button_logout"/>
+        android:layout_alignParentRight="true"/>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:padding = "10dp"
+            android:contentDescription="Home"
+            app:srcCompat="@drawable/home_icon" />
+
+        <ImageButton
+            android:id="@+id/refresh_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:padding = "10dp"
+            android:contentDescription="Refresh"
+            app:srcCompat="@drawable/refresh_icon" />
+
+        <ImageButton
+            android:id="@+id/post_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:padding = "10dp"
+            android:contentDescription="Post"
+            app:srcCompat="@drawable/circle_plus_icon" />
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:padding = "10dp"
+            android:contentDescription="Search"
+            app:srcCompat="@drawable/search_icon" />
+
+        <ImageButton
+            android:id="@+id/profile_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:padding = "10dp"
+            android:contentDescription="Profile"
+            app:srcCompat="@drawable/profile_icon_png" />
+
+    </LinearLayout>
+
+</RelativeLayout>

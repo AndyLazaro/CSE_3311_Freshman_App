@@ -67,6 +67,12 @@
         android:id="@+id/login_to_signup"
         android:textSize="25dp" />
 
+    <Button
+        android:id="@+id/button_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test app" />
+
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

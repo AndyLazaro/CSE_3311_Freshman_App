@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailEt, passwordEt;
-    Button registerBtn, loginBtn;
+    Button registerBtn, loginBtn, testBtn;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
 
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.login_to_signup);
         loginBtn = findViewById(R.id.button_login);
         progressBar = findViewById(R.id.progressbar_login);
+        testBtn = findViewById(R.id.button_test);
         mAuth = FirebaseAuth.getInstance();
 
         //Register button moves to register page
@@ -79,6 +80,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //---------Admin app testing button. Delete in user version-------
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                //finish();
+                startActivity(intent);
+            }
+        });
+        //-----------------------------------------------------------------
     }
 
     private void moveToMain()
