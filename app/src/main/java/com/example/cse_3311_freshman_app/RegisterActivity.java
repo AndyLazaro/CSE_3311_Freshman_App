@@ -22,6 +22,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,6 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox showPass;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    User newUser;
 
 
     @Override
@@ -45,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.signup_to_login);
         progressBar = findViewById(R.id.progressbar_register);
         mAuth = FirebaseAuth.getInstance();
+
 
         showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,12 +99,19 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                 {
+                                    //Create user in realtime database
+                                    database = FirebaseDatabase.getInstance();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String UID = user.getUid();
+                                    User newUser = new User("none", "none");
+                                    DatabaseReference mRef = database.getReference().child("Users").child(UID);
+                                    mRef.setValue(newUser);
                                     //Send verify email to email address, must be verified in order to log in to app
                                     mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(RegisterActivity.this, "Please Verify Email Sent", Toast.LENGTH_SHORT).show();
-                                            FirebaseAuth.getInstance().signOut();
+                                            mAuth.signOut();
                                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             finish();
                                         }

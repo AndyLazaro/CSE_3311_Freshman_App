@@ -9,16 +9,6 @@
     android:background="@color/utawhite"
     tools:context=".RegisterActivity">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="MavMatch"-->
-<!--        android:textColor="@color/utablack"-->
-<!--        android:textSize="40sp"-->
-<!--        android:textAlignment="center"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:layout_marginBottom="70dp"/>-->
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
