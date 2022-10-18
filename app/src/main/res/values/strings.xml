@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name"><font color="#F58025">Mav</font><font color="#0064b1">Match</font></string>
+    <string name="banner_for_event">Banner for event</string>
 </resources>
