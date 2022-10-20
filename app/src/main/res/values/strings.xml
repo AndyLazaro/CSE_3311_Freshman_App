@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name"><font color="#F58025">Mav</font><font color="#0064b1">Match</font></string>
     <string name="banner_for_event">Banner for event</string>
+
+    <string-array name="categories">
+        <item>Academic</item>
+        <item>Business  &amp; Finance</item>
+        <item>Culture &amp;  Language</item>
+        <item>Gaming &amp; esports</item>
+        <item>Lifestyle &amp; Health</item>
+        <item>Media &amp; Publications</item>
+        <item>Public Service  &amp;  Philanthropy</item>
+        <item>Special Interest</item>
+        <item>Spiritual &amp; Faith-Based</item>
+        <item>Sports &amp; Recreation</item>
+        <item>STEM - Engineering &amp; Mathematics</item>
+        <item>STEM - Science</item>
+        <item>STEM - Technology</item>
+        <item>Visual  &amp;  Performing Arts</item>
+    </string-array>
 </resources>

@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/club_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/app_title"
+        android:id="@+id/app_title_create_club"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="sans-serif-black"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center|bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/home_button"
@@ -26,10 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Home"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/home_icon" />
 
         <ImageButton
@@ -38,10 +59,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Refresh"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/refresh_icon" />
 
         <ImageButton
@@ -50,10 +71,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Post"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/circle_plus_icon" />
 
         <ImageButton
@@ -62,10 +83,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Search"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/search_icon" />
 
         <ImageButton
@@ -74,11 +95,38 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Profile"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/profile_icon" />
 
     </LinearLayout>
-</RelativeLayout>
+
+    <EditText
+        android:id="@+id/club_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textShortMessage|textPersonName"
+        android:minHeight="48dp"
+        android:text="Club Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="327dp"
+        android:layout_height="50dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
