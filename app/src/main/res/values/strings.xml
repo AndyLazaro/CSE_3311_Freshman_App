@@ -3,6 +3,7 @@
     <string name="banner_for_event">Banner for event</string>
 
     <string-array name="categories">
+        <item>Select Category...</item>
         <item>Academic</item>
         <item>Business  &amp; Finance</item>
         <item>Culture &amp;  Language</item>

@@ -8,7 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class CreateClubActivity
+public class CreateClubActivity extends AppCompatActivity
 {
-    Spinner categorySpinner = findViewById(R.id.spinner_category);
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_club);
+
+        Spinner categorySpinner = findViewById(R.id.spinner_category);
+        ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
+    }
 }
