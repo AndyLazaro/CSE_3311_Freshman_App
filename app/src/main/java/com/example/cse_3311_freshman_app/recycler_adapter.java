@@ -48,6 +48,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
         holder.e_description.setText(event.e_desc);
         holder.e_location.setText(event.e_location);
         //holder.e_time.setText((CharSequence) event.time);
+        holder.e_time.setText(event.time);
         //holder.e_image.layout(0,0,0,0);
         Glide.with(context).load(event.getE_image()).apply(new RequestOptions().override(1000,1000)).into(holder.e_image);
     }
@@ -68,7 +69,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
             e_name = itemView.findViewById(R.id.event_name);
             e_description = itemView.findViewById(R.id.event_description);
             e_location = itemView.findViewById(R.id.event_location);
-            //e_time = itemView.findViewById(R.id.event_time);
+            e_time = itemView.findViewById(R.id.event_time);
             e_image = itemView.findViewById(R.id.event_banner);
         }
     }
