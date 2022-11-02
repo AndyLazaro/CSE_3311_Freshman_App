@@ -22,11 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox showPass;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    FirebaseDatabase database;
-    DatabaseReference reference;
+    FirebaseFirestore database;
     User newUser;
 
 
@@ -99,13 +95,13 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                 {
-                                    //Create user in realtime database
-                                    database = FirebaseDatabase.getInstance();
+                                    //Create user in firestore database
+                                    database = FirebaseFirestore.getInstance();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String UID = user.getUid();
                                     User newUser = new User("none", "none");
-                                    DatabaseReference mRef = database.getReference().child("Users").child(UID);
-                                    mRef.setValue(newUser);
+                                    DocumentReference documentReference = database.collection("Users").document(UID);
+                                    documentReference.set(newUser);
                                     //Send verify email to email address, must be verified in order to log in to app
                                     mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
