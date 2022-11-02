@@ -2,7 +2,7 @@ package com.example.cse_3311_freshman_app;
 
 public class Organizations {
     String name;
-    String location;
+    String desc;
     String cAddress;
     String cEmail;
     String cPhoneNumber;
@@ -10,9 +10,9 @@ public class Organizations {
     public Organizations() {
     }
 
-    public Organizations(String name, String location, String cAddress, String cEmail, String cPhoneNumber) {
+    public Organizations(String name, String desc, String cAddress, String cEmail, String cPhoneNumber) {
         this.name = name;
-        this.location = location;
+        this.desc = desc;
         this.cAddress = cAddress;
         this.cEmail = cEmail;
         this.cPhoneNumber = cPhoneNumber;
@@ -26,12 +26,12 @@ public class Organizations {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDesc(String location) {
+        this.desc = location;
     }
 
     public String getCAddress() {
