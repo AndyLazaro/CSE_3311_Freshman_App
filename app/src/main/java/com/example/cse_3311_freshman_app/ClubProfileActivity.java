@@ -50,7 +50,7 @@ public class ClubProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_club_profile);
 
         ///////////////////////////////////////
-        // Declare the Buttons and Placeholders
+        // Declare the Buttons and Firebase Info Placeholders
         followButton = findViewById(R.id.follow_club_button);
         clubName = findViewById(R.id.club_profile_name);
         locationInfo = findViewById(R.id.location_info);
@@ -59,6 +59,7 @@ public class ClubProfileActivity extends AppCompatActivity {
         addressInfo = findViewById(R.id.address_info);
         descInfo = findViewById(R.id.description_info);
         clubAvatar = findViewById(R.id.club_avatar);
+
 
 
     }
