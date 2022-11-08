@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp">
 
+    <!--Image for the event-->
     <ImageView
         android:id="@+id/event_banner"
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <!--Textview holding location information-->
     <TextView
         android:id="@+id/event_location"
         android:layout_width="wrap_content"
@@ -31,6 +33,7 @@
         app:layout_constraintStart_toEndOf="@+id/location"
         app:layout_constraintTop_toBottomOf="@+id/event_name" />
 
+    <!--Textview holding time information-->
     <TextView
         android:id="@+id/event_time"
         android:layout_width="wrap_content"
@@ -42,6 +45,7 @@
         app:layout_constraintStart_toEndOf="@+id/time"
         app:layout_constraintTop_toBottomOf="@+id/event_location" />
 
+    <!--Textview for holding event description-->
     <TextView
         android:id="@+id/event_description"
         android:layout_width="wrap_content"
@@ -53,6 +57,7 @@
         app:layout_constraintStart_toEndOf="@+id/desc"
         app:layout_constraintTop_toBottomOf="@+id/event_time" />
 
+    <!--Textview for holding the name of the event-->
     <TextView
         android:id="@+id/event_name"
         android:layout_width="wrap_content"
@@ -63,6 +68,7 @@
         app:layout_constraintStart_toEndOf="@+id/Name_of_event"
         app:layout_constraintTop_toBottomOf="@+id/event_banner" />
 
+    <!--Description tag-->
     <TextView
         android:id="@+id/desc"
         android:layout_width="wrap_content"
@@ -73,6 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
+    <!--Location tag-->
     <TextView
         android:id="@+id/location"
         android:layout_width="wrap_content"
@@ -85,6 +92,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_of_event" />
 
+    <!--Time tag-->
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
@@ -97,6 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
+    <!--Event name tag-->
     <TextView
         android:id="@+id/Name_of_event"
         android:layout_width="wrap_content"
