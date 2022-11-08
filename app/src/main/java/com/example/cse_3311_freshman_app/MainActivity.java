@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button signOutBtn;              // variable for interacting with the sign out button in activity
     FirebaseAuth auth;              // variable giving us authorization in firebase
-    Button signOutBtn;
     ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;
-    FirebaseAuth auth;
     //creating variables for the database and recycler view
 
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
