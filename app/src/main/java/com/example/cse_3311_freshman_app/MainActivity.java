@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button signOutBtn;              // variable for interacting with the sign out button in activity
     FirebaseAuth auth;              // variable giving us authorization in firebase
+    Button signOutBtn;
+    ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;
+    FirebaseAuth auth;
     //creating variables for the database and recycler view
 
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
@@ -52,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
         signOutBtn = findViewById(R.id.button_logout);  // connect variable to button
         auth = FirebaseAuth.getInstance();              // connect variable to firebase
+        signOutBtn = findViewById(R.id.button_logout);
+        homeBtn = findViewById(R.id.home_button);
+        refreshBtn = findViewById(R.id.refresh_button);
+        postBtn = findViewById(R.id.post_button);
+        searchBtn = findViewById(R.id.search_button);
+        profileBtn = findViewById(R.id.profile_button);
+        auth = FirebaseAuth.getInstance();
 
         recyclerView = findViewById(R.id.events_list);  // connect variable to recycler view
         recyclerView.setHasFixedSize(true);             // keep the recycler view a fixed size
@@ -76,6 +87,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//------------Refresh button confirmed to work fine-----------------------
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();//finish current activity
+                startActivity(getIntent());//start current activity again
+            }
+        });
+//-----------App crashes when post button is pressed; needs work---------
+        /*postBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //No closing the MainActivity for posting feeds
+                Intent intent = new Intent(MainActivity.this, PostActivity.class);
+                //Immediately open add post
+                startActivity(intent);
+            }
+        });*/
 
     }
 
