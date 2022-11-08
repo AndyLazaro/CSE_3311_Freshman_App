@@ -34,14 +34,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signOutBtn;
-    FirebaseAuth auth;
+    Button signOutBtn;              // variable for interacting with the sign out button in activity
+    FirebaseAuth auth;              // variable giving us authorization in firebase
     //creating variables for the database and recycler view
 
-    RecyclerView recyclerView;
-    ArrayList<Event> events;
+    RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
+    ArrayList<Event> events;        // events to be held in the recycler adapter
     recycler_adapter adapter;
-    FirebaseFirestore db;
+    FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
 
     @Override
@@ -50,19 +50,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        signOutBtn = findViewById(R.id.button_logout);
-        auth = FirebaseAuth.getInstance();
+        signOutBtn = findViewById(R.id.button_logout);  // connect variable to button
+        auth = FirebaseAuth.getInstance();              // connect variable to firebase
 
-        recyclerView = findViewById(R.id.events_list);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = findViewById(R.id.events_list);  // connect variable to recycler view
+        recyclerView.setHasFixedSize(true);             // keep the recycler view a fixed size
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));   // give the recycler view a linear layout
 
-        db = FirebaseFirestore.getInstance();
-        events = new ArrayList<Event>();
-        adapter = new recycler_adapter(MainActivity.this,events);
+        db = FirebaseFirestore.getInstance();           // connect variable to firestore database
+        events = new ArrayList<Event>();    // initialize events arraylist. Should already contain data from firebase due to connection
+        adapter = new recycler_adapter(MainActivity.this,events);   // initialize the adapter & make it hold the events arraylist
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);   // attach the new adapter to the recyclerview to connect it and the events
 
         eventchange();
 
