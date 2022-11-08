@@ -16,6 +16,7 @@ public class Event {
 
     public Event() {}           // Default constructor
 
+    // Constructor assigning event aspects
     public Event(String e_name, String e_desc, String e_location, Timestamp time, String e_image) {
         this.e_name = e_name;
         this.e_desc = e_desc;

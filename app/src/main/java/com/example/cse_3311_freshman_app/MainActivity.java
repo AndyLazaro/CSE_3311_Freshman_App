@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     Button signOutBtn;              // variable for interacting with the sign out button in activity
     FirebaseAuth auth;              // variable giving us authorization in firebase
-    ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;
-    //creating variables for the database and recycler view
+    ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;    // buttons for the tabs below
 
+    //creating variables for the database and recycler view
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
     ArrayList<Event> events;        // events to be held in the recycler adapter
-    recycler_adapter adapter;
+    recycler_adapter adapter;       // variable to hold the adapter for connecting recycler view with db data
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
 
@@ -54,12 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         signOutBtn = findViewById(R.id.button_logout);  // connect variable to button
         auth = FirebaseAuth.getInstance();              // connect variable to firebase
-        signOutBtn = findViewById(R.id.button_logout);
+
+        // connecting vars to tab buttons
         homeBtn = findViewById(R.id.home_button);
         refreshBtn = findViewById(R.id.refresh_button);
         postBtn = findViewById(R.id.post_button);
         searchBtn = findViewById(R.id.search_button);
         profileBtn = findViewById(R.id.profile_button);
+
+        // Connect current data in firebase to program
         auth = FirebaseAuth.getInstance();
 
         recyclerView = findViewById(R.id.events_list);  // connect variable to recycler view
@@ -68,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));   // give the recycler view a linear layout
 
         db = FirebaseFirestore.getInstance();           // connect variable to firestore database
-        events = new ArrayList<Event>();    // initialize events arraylist. Should already contain data from firebase due to connection
+        events = new ArrayList<Event>();                // initialize events arraylist. Should already contain data from firebase due to connection
         adapter = new recycler_adapter(MainActivity.this,events);   // initialize the adapter & make it hold the events arraylist
 
-        recyclerView.setAdapter(adapter);   // attach the new adapter to the recyclerview to connect it and the events
+        recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
 
         eventchange();
 
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    @Override   // this method checks if the current user is logged in on start
     protected void onStart() {
         super.onStart();
 
