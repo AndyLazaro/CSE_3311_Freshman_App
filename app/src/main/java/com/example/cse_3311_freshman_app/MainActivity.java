@@ -124,29 +124,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // Queries the events in the database
     private void eventchange()
     {
-        db.collection("/Events")
-                .addSnapshotListener(new EventListener<QuerySnapshot>()
+        db.collection("/Events")        // query from this location
+                .addSnapshotListener(new EventListener<QuerySnapshot>()     // Hold the data from firebase in this snapshot
                 {
-                    @SuppressLint("NotifyDataSetChanged")
+                    @SuppressLint("NotifyDataSetChanged")   // ignore this error if made
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
                     {
-                        if(error != null)
+                        if(error != null)   // if there's an error and the query fails
                         {
-                            Log.e("Firestore Error",error.getMessage());
+                            Log.e("Firestore Error",error.getMessage());    // log that there was a firestore error
                             return;
                         }
 
-                        for(DocumentChange dc : value.getDocumentChanges())
+                        for(DocumentChange dc : value.getDocumentChanges())     // for all entries in this location
                         {
-                            if(dc.getType() == DocumentChange.Type.ADDED)
+                            if(dc.getType() == DocumentChange.Type.ADDED)   // if a query is found
                             {
-                                events.add(dc.getDocument().toObject(Event.class));
+                                events.add(dc.getDocument().toObject(Event.class));     // add this query to the events arraylist
                             }
-                            adapter.notifyDataSetChanged();
+                            adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
                         }
 
 
