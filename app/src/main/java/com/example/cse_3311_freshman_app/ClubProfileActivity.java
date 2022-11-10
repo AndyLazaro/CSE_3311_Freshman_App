@@ -18,14 +18,6 @@ public class ClubProfileActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     // Initialize activity parts
-    // tags
-    /*
-    TextView locationTag;
-    TextView emailTag;
-    TextView pnumberTag;
-    TextView addressTag;
-    TextView descTag;
-    */
 
     // Button
     Button followButton;
@@ -59,6 +51,7 @@ public class ClubProfileActivity extends AppCompatActivity {
         addressInfo = findViewById(R.id.address_info);
         descInfo = findViewById(R.id.description_info);
         clubAvatar = findViewById(R.id.club_avatar);
+        followButton = findViewById(R.id.follow_club_button);
 
 
 
