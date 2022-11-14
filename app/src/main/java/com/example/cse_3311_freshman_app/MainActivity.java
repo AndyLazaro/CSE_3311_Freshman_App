@@ -99,15 +99,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //-----------App crashes when post button is pressed; needs work---------
-        /*postBtn.setOnClickListener(new View.OnClickListener() {
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //No closing the MainActivity for posting feeds
-                Intent intent = new Intent(MainActivity.this, PostActivity.class);
-                //Immediately open add post
-                startActivity(intent);
+                finish();//finish current activity
+                Intent intent = new Intent(MainActivity.this, CreateEventActivity.class);
+                startActivity(intent);//start current activity again
             }
-        });*/
+        });
 
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
