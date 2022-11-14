@@ -119,6 +119,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.133" />
 
+
+    <EditText
+        android:id="@+id/club_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textShortMessage|textPersonName"
+        android:minHeight="48dp"
+        android:text="Club Location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/club_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/club_name"
+        app:layout_constraintTop_toBottomOf="@+id/club_name"
+        app:layout_constraintVertical_bias="0.016" />
+
     <Spinner
         android:id="@+id/spinner_category"
         android:layout_width="327dp"
@@ -132,5 +148,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.315" />
+
+    <Button
+        android:id="@+id/submitt_butt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

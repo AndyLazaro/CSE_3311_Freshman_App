@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 auth.signOut();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                //intent.putExtra("auth", auth);
                 startActivity(intent);
             }
         });
@@ -107,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });*/
+
+        // Profile button will go to create club for now while testing
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();//finish current activity
+                Intent intent = new Intent(MainActivity.this, CreateClubActivity.class);
+                startActivity(intent);//start current activity again
+            }
+        });
 
     }
 
