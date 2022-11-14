@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //-----------App crashes when post button is pressed; needs work---------
-        profileBtn.setOnClickListener(new View.OnClickListener() {
+        postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();//finish current activity
