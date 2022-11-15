@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//TODO: Search Clubs Button
 //-----------Search Clubs button-------------------------------------------------
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
