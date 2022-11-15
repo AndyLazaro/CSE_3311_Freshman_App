@@ -33,7 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class SearchClubActivity extends AppCompatActivity {
 
     Button signOutBtn;              // variable for interacting with the sign out button in activity
     FirebaseAuth auth;              // variable giving us authorization in firebase
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     //creating variables for the database and recycler view
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
-    ArrayList<Event> events;        // events to be held in the recycler adapter
+    ArrayList<Organizations> clubs;        // events to be held in the recycler adapter
     recycler_adapter adapter;       // variable to hold the adapter for connecting recycler view with db data
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));   // give the recycler view a linear layout
 
         db = FirebaseFirestore.getInstance();           // connect variable to firestore database
-        events = new ArrayList<Event>();                // initialize events arraylist. Should already contain data from firebase due to connection
-        adapter = new recycler_adapter(MainActivity.this,events);   // initialize the adapter & make it hold the events arraylist
+        clubs = new ArrayList<Organizations>();                // initialize events arraylist. Should already contain data from firebase due to connection
+        adapter = new recycler_adapter_search(SearchClubActivity.this,clubs);   // initialize the adapter & make it hold the events arraylist
 
         recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
 
-        eventchange();
+        clubchange();
 
 
         //Sign out the user and send back to login page
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 auth.signOut();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SearchClubActivity.this, LoginActivity.class);
                 //intent.putExtra("auth", auth);
                 startActivity(intent);
             }
@@ -120,47 +120,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//TODO: Search Clubs Button
-//-----------Search Clubs button-------------------------------------------------
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                //Intent intent = new Intent(MainActivity.this, )
-            }
-        });
-//-------------------------------------------------------------------------------
-
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();//finish current activity
-                Intent intent = new Intent(MainActivity.this, CreateClubActivity.class);
+                Intent intent = new Intent(SearchClubActivity.this, CreateClubActivity.class);
                 startActivity(intent);//start current activity again
             }
         });
 
     }
 
-    @Override   // this method checks if the current user is logged in on start
-    protected void onStart() {
-        super.onStart();
-
-        //Check to see if there is a current user logged in, if not, go to login page
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null)
-        {
-            Intent intent = new Intent (MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
     // Queries the events in the database
-    private void eventchange()
+    private void clubchange()
     {
-        db.collection("/Events")        // query from this location
+        db.collection("/Organizations")        // query from this location
                 .addSnapshotListener(new EventListener<QuerySnapshot>()     // Hold the data from firebase in this snapshot
                 {
                     @SuppressLint("NotifyDataSetChanged")   // ignore this error if made
@@ -177,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             if(dc.getType() == DocumentChange.Type.ADDED)   // if a query is found
                             {
-                                events.add(dc.getDocument().toObject(Event.class));     // add this query to the events arraylist
+                                clubs.add(dc.getDocument().toObject(Organizations.class));     // add this query to the events arraylist
                             }
                             adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
                         }
