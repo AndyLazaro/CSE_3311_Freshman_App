@@ -99,12 +99,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/utablue"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textColor="@color/white"
-            android:text="RSVP">
+            android:text="RSVP"
+            android:onClick="RSVP">
         </Button>
 
     </LinearLayout>
