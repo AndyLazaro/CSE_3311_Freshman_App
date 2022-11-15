@@ -103,9 +103,11 @@ public class SearchClubActivity extends AppCompatActivity {
 //------------Refresh button confirmed to work fine-----------------------
         refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();//finish current activity
-                startActivity(getIntent());//start current activity again
+            public void onClick(View view)
+            {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 //-----------App crashes when post button is pressed; needs work. Fixed---------
