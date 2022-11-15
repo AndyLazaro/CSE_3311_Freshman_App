@@ -41,8 +41,8 @@ public class SearchClubActivity extends AppCompatActivity {
 
     //creating variables for the database and recycler view
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
-    ArrayList<Organizations> clubs;        // events to be held in the recycler adapter
-    recycler_adapter_search adapter;       // variable to hold the adapter for connecting recycler view with db data
+    ArrayList<Organizations> clubs;        // clubs to be held in the recycler adapter
+    recycler_adapter_search adapter_search;       // variable to hold the adapter for connecting recycler view with db data
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
 
@@ -71,10 +71,10 @@ public class SearchClubActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));   // give the recycler view a linear layout
 
         db = FirebaseFirestore.getInstance();           // connect variable to firestore database
-        clubs = new ArrayList<Organizations>();                // initialize events arraylist. Should already contain data from firebase due to connection
-        adapter = new recycler_adapter_search(SearchClubActivity.this,clubs);   // initialize the adapter & make it hold the events arraylist
+        clubs = new ArrayList<Organizations>();                // initialize clubs arraylist. Should already contain data from firebase due to connection
+        adapter_search = new recycler_adapter_search(SearchClubActivity.this,clubs);   // initialize the adapter & make it hold the events arraylist
 
-        recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
+        recyclerView.setAdapter(adapter_search);               // attach the new adapter to the recyclerview to connect it and the events
 
         clubchange();
 
@@ -154,7 +154,7 @@ public class SearchClubActivity extends AppCompatActivity {
                             {
                                 clubs.add(dc.getDocument().toObject(Organizations.class));     // add this query to the events arraylist
                             }
-                            adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
+                            adapter_search.notifyDataSetChanged();     // force layout managers to rebind and relayout
                         }
 
 

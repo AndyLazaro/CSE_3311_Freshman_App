@@ -125,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 Intent intent = new Intent(MainActivity.this, SearchClubActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 //-------------------------------------------------------------------------------

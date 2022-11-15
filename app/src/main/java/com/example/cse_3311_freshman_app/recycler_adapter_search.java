@@ -42,8 +42,8 @@ public class recycler_adapter_search extends RecyclerView.Adapter<recycler_adapt
     public void onBindViewHolder(@NonNull recycler_adapter_search.MyViewHolder holder, int position) {
         Organizations club = clubs.get(position); // attach the event to the position on the page it is in
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, OpenEventActivity.class);
-            intent.putExtra("CLUB", (Parcelable) club);
+            Intent intent = new Intent(context, ClubProfileActivity.class);
+            intent.putExtra("CLUB", String.valueOf(club));
             context.startActivity(intent);
         });
         holder.clubName.setText(club.name);
