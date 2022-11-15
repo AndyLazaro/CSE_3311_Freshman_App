@@ -1,6 +1,8 @@
 package com.example.cse_3311_freshman_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,13 +72,18 @@ public class CreateClubActivity extends AppCompatActivity
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                //Log.d(TAG, "DocumentSnapshot successfully written!");
+                                Toast.makeText(CreateClubActivity.this, "Club has been created", Toast.LENGTH_SHORT).show();
+
+                                // Go back to main page
+                                finish();//finish current activity
+                                Intent intent = new Intent(CreateClubActivity.this, MainActivity.class);
+                                startActivity(intent);//start current activity again
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                //Log.w(TAG, "Error writing document", e);
+                                Toast.makeText(CreateClubActivity.this, "Club creation failed, please try again.", Toast.LENGTH_SHORT).show();
                             }
                         });
 
