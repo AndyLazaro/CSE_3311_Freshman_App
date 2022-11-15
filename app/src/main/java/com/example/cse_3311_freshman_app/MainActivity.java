@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
 
-        eventchange();
+        eventChange();
 
 
         //Sign out the user and send back to login page
@@ -85,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 auth.signOut();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                //intent.putExtra("auth", auth);
+                startActivity(intent);
+            }
+        });
+//------------Home button-------------------------------------------------
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -97,16 +108,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(getIntent());//start current activity again
             }
         });
-//-----------App crashes when post button is pressed; needs work---------
-        /*postBtn.setOnClickListener(new View.OnClickListener() {
+//-----------App crashes when post button is pressed; needs work. Fixed---------
+        postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //No closing the MainActivity for posting feeds
-                Intent intent = new Intent(MainActivity.this, PostActivity.class);
+                finish();
+                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
                 //Immediately open add post
                 startActivity(intent);
             }
-        });*/
+        });
+
+        // Profile button will go to create club for now while testing
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();//finish current activity
+                Intent intent = new Intent(MainActivity.this, CreateClubActivity.class);
+                startActivity(intent);//start current activity again
+            }
+        });
 
     }
 
@@ -154,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
-
 
 }
 

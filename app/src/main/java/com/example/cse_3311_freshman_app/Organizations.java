@@ -5,16 +5,18 @@ public class Organizations {
     String desc;
     String cAddress;
     String cEmail;
+    String location;
     String cPhoneNumber;
 
     public Organizations() {
     }
 
-    public Organizations(String name, String desc, String cAddress, String cEmail, String cPhoneNumber) {
+    public Organizations(String name, String desc, String cAddress, String cEmail, String location, String cPhoneNumber) {
         this.name = name;
         this.desc = desc;
         this.cAddress = cAddress;
         this.cEmail = cEmail;
+        this.location = location;
         this.cPhoneNumber = cPhoneNumber;
     }
 
@@ -48,6 +50,14 @@ public class Organizations {
 
     public void setCEmail(String cEmail) {
         this.cEmail = cEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getCPhoneNumber() {
