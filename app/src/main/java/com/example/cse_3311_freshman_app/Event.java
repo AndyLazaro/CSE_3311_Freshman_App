@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Event implements Serializable {
+public class Event implements Serializable { // Serializable needed to send thru intent
     String e_name;              // String to hold the event name
     //String e_org;
     String e_desc;              // String to hold the event description
