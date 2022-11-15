@@ -46,6 +46,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
             context.startActivity(intent);
         });
         holder.e_name.setText(event.e_name);
+        //holder.e_org.setText(event.e_org);
         holder.e_description.setText(event.e_desc);
         holder.e_location.setText(event.e_location);
         holder.e_time.setText(event.time);
@@ -64,7 +65,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            //e_org = itemView.findViewById(R.id.event_organizer);
+            e_org = itemView.findViewById(R.id.event_organizer);
             e_name = itemView.findViewById(R.id.event_name);    // connecting the vars to the items in the recyclerview
             e_description = itemView.findViewById(R.id.event_description);
             e_location = itemView.findViewById(R.id.event_location);
