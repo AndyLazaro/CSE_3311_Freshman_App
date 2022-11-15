@@ -89,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//------------Home button-------------------------------------------------
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //------------Refresh button confirmed to work fine-----------------------
         refreshBtn.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +109,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //-----------App crashes when post button is pressed; needs work---------
-        /*postBtn.setOnClickListener(new View.OnClickListener() {
+        postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //No closing the MainActivity for posting feeds
-                Intent intent = new Intent(MainActivity.this, PostActivity.class);
+                finish();
+                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
                 //Immediately open add post
                 startActivity(intent);
             }
-        });*/
+        });
 
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
-
 
 }
 
