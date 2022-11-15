@@ -59,7 +59,7 @@ public class CreateClubActivity extends AppCompatActivity
                 org.put("address", new_org.getCAddress());
                 org.put("email", new_org.getCEmail());
                 org.put("location", new_org.getLocation());
-                org.put("Phone", new_org.getCPhoneNumber());
+                org.put("pNumber", new_org.getCPhoneNumber());
                 org.put("uid", auth.getCurrentUser().getUid());
 
                 /*Map<String, Object> org_roles = new HashMap<>();

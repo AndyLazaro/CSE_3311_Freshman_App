@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
 
-        eventchange();
+        eventChange();
 
 
         //Sign out the user and send back to login page
@@ -147,33 +147,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void eventchange()
+    private void eventChange()
     {
         db.collection("/Events")
-                .addSnapshotListener(new EventListener<QuerySnapshot>()
+            .addSnapshotListener(new EventListener<QuerySnapshot>()
+            {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
                 {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
+                    if(error != null)
                     {
-                        if(error != null)
-                        {
-                            Log.e("Firestore Error",error.getMessage());
-                            return;
-                        }
-
-                        for(DocumentChange dc : value.getDocumentChanges())
-                        {
-                            if(dc.getType() == DocumentChange.Type.ADDED)
-                            {
-                                events.add(dc.getDocument().toObject(Event.class));
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-
-
+                        Log.e("Firestore Error",error.getMessage());
+                        return;
                     }
-                });
+
+                    for(DocumentChange dc : value.getDocumentChanges())
+                    {
+                        if(dc.getType() == DocumentChange.Type.ADDED)
+                        {
+                            events.add(dc.getDocument().toObject(Event.class));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            });
 
     }
 
