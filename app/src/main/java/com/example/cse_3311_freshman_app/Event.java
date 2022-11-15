@@ -3,10 +3,11 @@ package com.example.cse_3311_freshman_app;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.Exclude;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Event {
+public class Event implements Serializable {
     String e_name;              // String to hold the event name
     String e_desc;              // String to hold the event description
     String e_location;          // String to hold the event location
