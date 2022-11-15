@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(getIntent());//start current activity again
             }
         });
-//-----------App crashes when post button is pressed; needs work---------
+//-----------App crashes when post button is pressed; needs work. Fixed---------
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
