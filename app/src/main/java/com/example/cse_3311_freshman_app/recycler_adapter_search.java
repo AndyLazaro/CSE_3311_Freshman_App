@@ -2,6 +2,7 @@ package com.example.cse_3311_freshman_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class recycler_adapter_search extends RecyclerView.Adapter<recycler_adapt
         Organizations club = clubs.get(position); // attach the event to the position on the page it is in
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, OpenEventActivity.class);
-            intent.putExtra("CLUB", club);
+            intent.putExtra("CLUB", (Parcelable) club);
             context.startActivity(intent);
         });
         holder.clubName.setText(club.name);

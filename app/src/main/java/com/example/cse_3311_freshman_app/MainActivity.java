@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                //Intent intent = new Intent(MainActivity.this, )
+                Intent intent = new Intent(MainActivity.this, SearchClubActivity.class);
+                startActivity(intent);
             }
         });
 //-------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ public class SearchClubActivity extends AppCompatActivity {
     //creating variables for the database and recycler view
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
     ArrayList<Organizations> clubs;        // events to be held in the recycler adapter
-    recycler_adapter adapter;       // variable to hold the adapter for connecting recycler view with db data
+    recycler_adapter_search adapter;       // variable to hold the adapter for connecting recycler view with db data
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
 
