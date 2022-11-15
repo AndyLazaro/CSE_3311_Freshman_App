@@ -7,17 +7,19 @@ public class Organizations {
     String cEmail;
     String location;
     String cPhoneNumber;
+    String category;
 
     public Organizations() {
     }
 
-    public Organizations(String name, String desc, String cAddress, String cEmail, String location, String cPhoneNumber) {
+    public Organizations(String name, String desc, String cAddress, String cEmail, String location, String cPhoneNumber, String category) {
         this.name = name;
         this.desc = desc;
         this.cAddress = cAddress;
         this.cEmail = cEmail;
         this.location = location;
         this.cPhoneNumber = cPhoneNumber;
+        this.category = category;
     }
 
     public String getName() {
@@ -67,4 +69,11 @@ public class Organizations {
     public void setCPhoneNumber(String cPhoneNumber) {
         this.cPhoneNumber = cPhoneNumber;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {this.category = category;}
+
 }

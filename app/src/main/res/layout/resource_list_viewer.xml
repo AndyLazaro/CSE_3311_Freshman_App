@@ -42,6 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/Name_of_event"
         app:layout_constraintTop_toBottomOf="@+id/event_banner" />
 
+    <!--Event Org ame tag-->
     <TextView
         android:id="@+id/Name_of_org"
         android:layout_width="wrap_content"
@@ -53,6 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_of_event" />
 
+    <!--Textview for holding the name of the event's organizer-->
     <TextView
         android:id="@+id/event_organizer"
         android:layout_width="wrap_content"

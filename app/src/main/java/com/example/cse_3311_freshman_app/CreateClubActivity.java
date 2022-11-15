@@ -1,6 +1,8 @@
 package com.example.cse_3311_freshman_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,16 +45,22 @@ public class CreateClubActivity extends AppCompatActivity
         final Button submit_button = findViewById(R.id.submitt_butt);
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                // Get all text fields
                 EditText name_edit =   (EditText)findViewById(R.id.club_name);
                 EditText location_edit =   (EditText)findViewById(R.id.club_location);
+                EditText description_edit =   (EditText)findViewById(R.id.club_description);
+                TextView categoryView = (TextView)categorySpinner.getSelectedView();
+                String result = categoryView.getText().toString();
+
+                // get database
                 db = FirebaseFirestore.getInstance();           // connect variable to firestore database
 
 
 
                 // Add org to database
                 //create org class
-                Organizations new_org = new Organizations(name_edit.getText().toString(), "", "", "", location_edit.getText().toString(), "");
-                // check org against database (org contact)
+                Organizations new_org = new Organizations(name_edit.getText().toString(), description_edit.getText().toString(), "", "", location_edit.getText().toString(), "", categoryView.getText().toString());
                 // create hash map for org
                 Map<String, Object> org = new HashMap<>();
                 org.put("name", new_org.getName());
@@ -61,22 +70,26 @@ public class CreateClubActivity extends AppCompatActivity
                 org.put("location", new_org.getLocation());
                 org.put("pNumber", new_org.getCPhoneNumber());
                 org.put("uid", auth.getCurrentUser().getUid());
+                org.put("category", new_org.getCategory());
 
-                /*Map<String, Object> org_roles = new HashMap<>();
-                org_roles.put("")*/
-
+                // upload to db
                 db.collection("Organizations").document(new_org.getName())
                         .set(org)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                //Log.d(TAG, "DocumentSnapshot successfully written!");
+                                Toast.makeText(CreateClubActivity.this, "Club has been created", Toast.LENGTH_SHORT).show();
+
+                                // Go back to main page
+                                finish();//finish current activity
+                                Intent intent = new Intent(CreateClubActivity.this, MainActivity.class);
+                                startActivity(intent);//start current activity again
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                //Log.w(TAG, "Error writing document", e);
+                                Toast.makeText(CreateClubActivity.this, "Club creation failed, please try again.", Toast.LENGTH_SHORT).show();
                             }
                         });
 

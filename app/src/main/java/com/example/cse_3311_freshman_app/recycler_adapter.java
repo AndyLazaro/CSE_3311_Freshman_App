@@ -40,10 +40,10 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
     @Override   // sets the data in the event to the value of the event name in the event class
     public void onBindViewHolder(@NonNull recycler_adapter.MyViewHolder holder, int position) {
         Event event = events.get(position); // attach the event to the position on the page it is in
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, OpenEventActivity.class);
-            intent.putExtra("EVENT", event);
-            context.startActivity(intent);
+        holder.itemView.setOnClickListener(v -> { // attach the listener on the individual items
+            Intent intent = new Intent(context, OpenEventActivity.class); 
+            intent.putExtra("EVENT", event); // stores the item's event to send to next acitivity
+            context.startActivity(intent); // starts up OpenEventActivity
         });
         holder.e_name.setText(event.e_name);
         //holder.e_org.setText(event.e_org);
@@ -65,8 +65,8 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            e_org = itemView.findViewById(R.id.event_organizer);
             e_name = itemView.findViewById(R.id.event_name);    // connecting the vars to the items in the recyclerview
+            e_org = itemView.findViewById(R.id.event_organizer);
             e_description = itemView.findViewById(R.id.event_description);
             e_location = itemView.findViewById(R.id.event_location);
             e_time = itemView.findViewById(R.id.event_time);
