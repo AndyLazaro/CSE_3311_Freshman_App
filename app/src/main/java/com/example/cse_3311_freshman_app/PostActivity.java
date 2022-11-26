@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.net.Uri;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,10 +26,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.ChildEventListener;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.io.ByteArrayOutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 public class PostActivity extends AppCompatActivity {
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
     EditText post_des, post_location, post_name, post_org;
+    Spinner s_year, s_month, s_day, s_time;
     int SELECT_PICTURE = 200;
 
     FirebaseDatabase db_base;
@@ -50,6 +59,10 @@ public class PostActivity extends AppCompatActivity {
         post_location = findViewById(R.id.post_location);
         post_name = findViewById(R.id.post_name);
         post_org = findViewById(R.id.post_org);
+        s_year = findViewById(R.id.start_month);
+        s_month = findViewById(R.id.start_year);
+        s_day = findViewById(R.id.start_day);
+        s_time = findViewById(R.id.start_time);
 
         post_backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,13 +90,51 @@ public class PostActivity extends AppCompatActivity {
                 String org = post_org.getEditableText().toString();
                 String description = post_des.getEditableText().toString();
                 String location = post_location.getEditableText().toString();
+                String start_year = s_year.getSelectedItem().toString();
+                String start_month = s_month.getSelectedItem().toString();
+                String start_day = s_day.getSelectedItem().toString();
+                String start_time = s_time.getSelectedItem().toString();
 
-                //Event(name, org, description, location, time, img_data);
+                String full_date = cat_date(start_year, start_month, start_day, start_time);//get MM/dd/yyyy hh:mm string
+                String img_data = getImgString(captureImage);
+
+                //somehow convert full_date string to timestamp format
+
+                //Event post_event = new Event(name, org, description, location, full_date, img_data);
+                //db_ref.push().setValue(post_event);//post the event data to database
+
+                //-------------Close post window after posting event----------------
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    //private String getImgString(){}//complete Img -> string conversion
+    private String getImgString(ImageView img){//convert image to string format
+        String img_string = null;
+        Bitmap bmp = null;
+        ByteArrayOutputStream bos = null;
+        byte[] bt = null;
+
+        try{
+            img.buildDrawingCache();
+            bmp = img.getDrawingCache();//convert img to bitmap
+            bos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bt = bos.toByteArray();
+            img_string = Base64.encodeToString(bt, Base64.DEFAULT);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return img_string;
+    }
+
+    private String cat_date(String year, String month, String day, String time){
+        String full_date = month + '/' + day + '/' + year + ' ' + time;
+        return full_date;
+    }
 
 
     void imageChooser()
