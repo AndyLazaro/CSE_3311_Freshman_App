@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,8 +27,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public class PostActivity extends AppCompatActivity {
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
-    EditText post_des, post_location, post_name, post_org, post_time;
-    String img_data;
+    EditText post_des, post_location, post_name, post_org;
     int SELECT_PICTURE = 200;
 
     FirebaseDatabase db_base;
@@ -50,7 +50,6 @@ public class PostActivity extends AppCompatActivity {
         post_location = findViewById(R.id.post_location);
         post_name = findViewById(R.id.post_name);
         post_org = findViewById(R.id.post_org);
-        post_time = findViewById(R.id.post_time);
 
         post_backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,19 +73,17 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //post content
-                //img_data = getImgString();
-                String description = post_des.getEditableText().toString();
-                String location = post_location.getEditableText().toString();
                 String name = post_name.getEditableText().toString();
                 String org = post_org.getEditableText().toString();
-                //String time = post_time.getEditableText().toString();//time is timestamp
+                String description = post_des.getEditableText().toString();
+                String location = post_location.getEditableText().toString();
 
                 //Event(name, org, description, location, time, img_data);
             }
         });
     }
 
-    //private String getImgString(){}//complete Img -> string converison
+    //private String getImgString(){}//complete Img -> string conversion
 
 
     void imageChooser()
