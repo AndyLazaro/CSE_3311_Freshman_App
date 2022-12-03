@@ -47,7 +47,7 @@ public class OpenEventActivity extends AppCompatActivity {
 
     public void populateEventPage() {
         eName.setText(event.e_name); // inputs event's info into thw layout
-        //eOrg.setText(event.e_org);
+        eOrg.setText(event.e_org);
         eDesc.setText(event.e_desc);
         eLoc.setText(event.e_location);
         eTime.setText(event.time);

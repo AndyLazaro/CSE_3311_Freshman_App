@@ -46,7 +46,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.MyVi
             context.startActivity(intent); // starts up OpenEventActivity
         });
         holder.e_name.setText(event.e_name);
-        //holder.e_org.setText(event.e_org);
+        holder.e_org.setText(event.e_org);
         holder.e_description.setText(event.e_desc);
         holder.e_location.setText(event.e_location);
         holder.e_time.setText(event.time);
