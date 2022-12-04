@@ -88,13 +88,24 @@ public class Profile_Page extends AppCompatActivity {
                     }
                 });
 
-        // Connect submit button
+        // Connect you clubs button
         final Button clubs_button = findViewById(R.id.clubs_button);
         clubs_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
                 Intent intent = new Intent(getApplicationContext(), ViewOwnedClubsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Connect create clubs button
+        final Button create_clubs_button = findViewById(R.id.create_clubs_button);
+        create_clubs_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), CreateClubActivity.class);
                 startActivity(intent);
             }
         });

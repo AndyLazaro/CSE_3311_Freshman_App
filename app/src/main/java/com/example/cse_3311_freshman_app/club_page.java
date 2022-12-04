@@ -113,8 +113,9 @@ public class club_page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                Intent intent = new Intent(getApplicationContext(), ViewOwnedClubsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), edit_club.class);
+                intent.putExtra("org", org); // stores the item's org to send to next acitivity
+                startActivity(intent);              // starts up edit club
             }
         });
 //------------Home button-------------------------------------------------

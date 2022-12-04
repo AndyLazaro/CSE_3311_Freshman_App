@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE_3311_Freshman_App">
         <activity
+            android:name=".edit_club"
+            android:exported="false"
+            android:label="@string/title_activity_edit_club"
+            android:theme="@style/Theme.CSE_3311_Freshman_App.NoActionBar" />
+        <activity
             android:name=".club_page"
             android:exported="false"
             android:label="@string/title_activity_club_page"

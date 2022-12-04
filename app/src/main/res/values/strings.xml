@@ -137,4 +137,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_view_owned_clubs">ViewOwnedClubsActivity</string>
     <string name="title_activity_club_page">club_page</string>
+    <string name="title_activity_edit_club">edit_club</string>
 </resources>
