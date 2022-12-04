@@ -31,13 +31,16 @@ public class edit_club extends AppCompatActivity
     FirebaseAuth auth;              // variable giving us authorization in firebase
     FirebaseFirestore db;           // variable to hold the firestore database in firebases
 
+    Organizations org;              // Org to be editted
+
     public void onCreate(Bundle savedInstanceState)
     {
         auth = FirebaseAuth.getInstance();              // connect variable to firebase
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_club);
+
+        this.org = (Organizations) getIntent().getSerializableExtra("org");
 
         // Set spinner info
         Spinner categorySpinner = findViewById(R.id.spinner_category);
@@ -45,25 +48,25 @@ public class edit_club extends AppCompatActivity
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
+        // Get all text fields
+        EditText name_edit =   (EditText)findViewById(R.id.club_name);
+        EditText location_edit =   (EditText)findViewById(R.id.club_location);
+        EditText description_edit =   (EditText)findViewById(R.id.club_description);
+
+        // Populate edits with current text
+        name_edit.setText(org.name);
+        location_edit.setText(org.location);
+        description_edit.setText(org.desc);
+
         // Connect submit button
         final Button submit_button = findViewById(R.id.submitt_butt);
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                // Get all text fields
-                EditText name_edit =   (EditText)findViewById(R.id.club_name);
-                EditText location_edit =   (EditText)findViewById(R.id.club_location);
-                EditText description_edit =   (EditText)findViewById(R.id.club_description);
-
-                // Populate edits with current text
-
-                // Make spinner text
-                TextView categoryView = (TextView)categorySpinner.getSelectedView();
-
                 // get database
                 db = FirebaseFirestore.getInstance();           // connect variable to firestore database
 
-
+                // Make spinner text
+                TextView categoryView = (TextView)categorySpinner.getSelectedView();
 
                 // Add org to database
                 //create org class
