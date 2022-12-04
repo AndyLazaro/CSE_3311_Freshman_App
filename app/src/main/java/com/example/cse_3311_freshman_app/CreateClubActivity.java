@@ -36,12 +36,13 @@ public class CreateClubActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_club);
 
+        // Set spinner info
         Spinner categorySpinner = findViewById(R.id.spinner_category);
         ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
-
+        // Connect submit button
         final Button submit_button = findViewById(R.id.submitt_butt);
         submit_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,8 +51,8 @@ public class CreateClubActivity extends AppCompatActivity
                 EditText name_edit =   (EditText)findViewById(R.id.club_name);
                 EditText location_edit =   (EditText)findViewById(R.id.club_location);
                 EditText description_edit =   (EditText)findViewById(R.id.club_description);
+                // Make spinner text
                 TextView categoryView = (TextView)categorySpinner.getSelectedView();
-                String result = categoryView.getText().toString();
 
                 // get database
                 db = FirebaseFirestore.getInstance();           // connect variable to firestore database
@@ -61,6 +62,7 @@ public class CreateClubActivity extends AppCompatActivity
                 // Add org to database
                 //create org class
                 Organizations new_org = new Organizations(name_edit.getText().toString(), description_edit.getText().toString(), "", "", location_edit.getText().toString(), "", categoryView.getText().toString());
+
                 // create hash map for org
                 Map<String, Object> org = new HashMap<>();
                 org.put("name", new_org.getName());
@@ -69,7 +71,7 @@ public class CreateClubActivity extends AppCompatActivity
                 org.put("email", new_org.getCEmail());
                 org.put("location", new_org.getLocation());
                 org.put("pNumber", new_org.getCPhoneNumber());
-                org.put("uid", auth.getCurrentUser().getUid());
+                org.put("uid", auth.getCurrentUser().getUid());         // Send user ID for verification
                 org.put("category", new_org.getCategory());
 
                 // upload to db
@@ -92,9 +94,6 @@ public class CreateClubActivity extends AppCompatActivity
                                 Toast.makeText(CreateClubActivity.this, "Club creation failed, please try again.", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-                // create org in database
-                // go to org edit page
             }
         });
 

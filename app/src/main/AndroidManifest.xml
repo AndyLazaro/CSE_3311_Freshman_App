@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cse_3311_freshman_app">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE_3311_Freshman_App">
+        <activity
+            android:name=".Profile_Page"
+            android:exported="false"
+            android:label="@string/title_activity_profile_page"
+            android:theme="@style/Theme.CSE_3311_Freshman_App.NoActionBar" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false"
@@ -23,7 +30,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".PostActivity"
-            android:exported = "false"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".CreateClubActivity"
