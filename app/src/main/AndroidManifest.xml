@@ -12,6 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE_3311_Freshman_App">
         <activity
+            android:name=".club_page"
+            android:exported="false"
+            android:label="@string/title_activity_club_page"
+            android:theme="@style/Theme.CSE_3311_Freshman_App.NoActionBar" />
+        <activity
+            android:name=".ViewOwnedClubsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_view_owned_clubs"
+            android:theme="@style/Theme.CSE_3311_Freshman_App.NoActionBar" />
+        <activity
             android:name=".Profile_Page"
             android:exported="false"
             android:label="@string/title_activity_profile_page"

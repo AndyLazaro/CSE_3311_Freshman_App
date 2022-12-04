@@ -61,16 +61,16 @@ public class CreateClubActivity extends AppCompatActivity
 
                 // Add org to database
                 //create org class
-                Organizations new_org = new Organizations(name_edit.getText().toString(), description_edit.getText().toString(), "", "", location_edit.getText().toString(), "", categoryView.getText().toString());
+                Organizations new_org = new Organizations(name_edit.getText().toString(), description_edit.getText().toString(), "", "", location_edit.getText().toString(), "", categoryView.getText().toString(), auth.getCurrentUser().getUid());
 
                 // create hash map for org
                 Map<String, Object> org = new HashMap<>();
                 org.put("name", new_org.getName());
                 org.put("desc", new_org.getDesc());
-                org.put("address", new_org.getCAddress());
-                org.put("email", new_org.getCEmail());
+                org.put("address", new_org.getAddress());
+                org.put("email", new_org.getEmail());
                 org.put("location", new_org.getLocation());
-                org.put("pNumber", new_org.getCPhoneNumber());
+                org.put("pNumber", new_org.getPNumber());
                 org.put("uid", auth.getCurrentUser().getUid());         // Send user ID for verification
                 org.put("category", new_org.getCategory());
 

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +26,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-public class Profile_Page extends AppCompatActivity {
+public class club_page extends AppCompatActivity {
 
 
     ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;    // buttons for the tabs below
+    // Text views
+    TextView email_view, description_view, name_view;
 
 
     //creating variables for the database and recycler view
@@ -40,11 +45,15 @@ public class Profile_Page extends AppCompatActivity {
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     FirebaseAuth auth;
     ProgressDialog progressDialog;
+    Organizations org;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);
+        setContentView(R.layout.activity_club_page);
+
+        // Get org
+        this.org = (Organizations) getIntent().getSerializableExtra("org");         // retreive event from intent
 
         // connecting vars to tab buttons
         homeBtn = findViewById(R.id.home_button);
@@ -53,9 +62,19 @@ public class Profile_Page extends AppCompatActivity {
         searchBtn = findViewById(R.id.search_button);
         profileBtn = findViewById(R.id.profile_button);
 
-
         // Connect current data in firebase to program
         auth = FirebaseAuth.getInstance();
+
+        // connect text views
+        name_view = findViewById(R.id.club_name_view);
+        description_view = findViewById(R.id.club_description);
+        email_view = findViewById(R.id.club_email_view);
+
+        // Set text
+        name_view.setText(org.name);
+        description_view.setText(org.desc);
+        email_view.setText(org.email);
+
 
         recyclerView = findViewById(R.id.events_list);  // connect variable to recycler view
         recyclerView.setHasFixedSize(true);             // keep the recycler view a fixed size
@@ -64,12 +83,12 @@ public class Profile_Page extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();           // connect variable to firestore database
         events = new ArrayList<Event>();                // initialize events arraylist. Should already contain data from firebase due to connection
-        adapter = new recycler_adapter(Profile_Page.this,events);   // initialize the adapter & make it hold the events arraylist
+        adapter = new recycler_adapter(club_page.this,events);   // initialize the adapter & make it hold the events arraylist
 
         recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the event
 
         // Request to db for rsvp events
-        db.collection("/Events").whereArrayContains("rsvp", auth.getCurrentUser().getUid())
+        db.collection("/Events").whereEqualTo("e_org", org.name)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -89,8 +108,8 @@ public class Profile_Page extends AppCompatActivity {
                 });
 
         // Connect submit button
-        final Button clubs_button = findViewById(R.id.clubs_button);
-        clubs_button.setOnClickListener(new View.OnClickListener() {
+        final Button edit_button = findViewById(R.id.edit_button);
+        edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
