@@ -68,7 +68,7 @@ public class Profile_Page extends AppCompatActivity {
         // Get username
 
         // Request to db
-        db.collection("/Events")
+        db.collection("/Events").whereArrayContains("rsvp", auth.getCurrentUser().getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -87,6 +87,16 @@ public class Profile_Page extends AppCompatActivity {
                     }
                 });
 
+//------------Home button-------------------------------------------------
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 //------------Refresh button confirmed to work fine-----------------------
         refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
