@@ -22,6 +22,8 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.ChildEventListener;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -39,15 +41,15 @@ public class PostActivity extends AppCompatActivity {
     Spinner s_year, s_month, s_day, s_time;
     int SELECT_PICTURE = 200;
 
-    FirebaseDatabase db_base;
-    DatabaseReference db_ref;
+    FirebaseFirestore db_base;
+    CollectionReference db_ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db_base = FirebaseDatabase.getInstance();
-        db_ref = db_base.getReference("Events");
+        db_base = FirebaseFirestore.getInstance();
+        db_ref = db_base.collection("Events");
 
         setContentView(R.layout.activity_post);
 
@@ -95,13 +97,13 @@ public class PostActivity extends AppCompatActivity {
                 String start_day = s_day.getSelectedItem().toString();
                 String start_time = s_time.getSelectedItem().toString();
 
-                String full_date = cat_date(start_year, start_month, start_day, start_time);//get MM/dd/yyyy hh:mm string
-                String img_data = getImgString(captureImage);
+                //String full_date = cat_date(start_year, start_month, start_day, start_time);//get MM/dd/yyyy hh:mm string
+                //String img_data = getImgString(captureImage);
+                Timestamp timestamp = Timestamp.now();
+                String img_data = "https://firebasestorage.googleapis.com/v0/b/freshmen-app.appspot.com/o/images%2Frefresh-the-day-lemonade-stand-and-banner.jpg?alt=media&token=0cfda8e5-cb6c-4596-9356-dba0df993537";
 
-                //somehow convert full_date string to timestamp format
-
-                //Event post_event = new Event(name, org, description, location, full_date, img_data);
-                //db_ref.push().setValue(post_event);//post the event data to database
+                Event post_event = new Event(name, org, description, location, timestamp, img_data);
+                db_ref.add(post_event);//post the event data to database
 
                 //-------------Close post window after posting event----------------
                 finish();
