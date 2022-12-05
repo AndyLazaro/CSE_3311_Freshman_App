@@ -38,7 +38,6 @@ public class PostActivity extends AppCompatActivity {
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
     EditText post_des, post_location, post_name, post_org;
-    Spinner s_year, s_month, s_day, s_time;
     int SELECT_PICTURE = 200;
 
     FirebaseFirestore db_base;
@@ -124,12 +123,6 @@ public class PostActivity extends AppCompatActivity {
         }
         return img_string;
     }
-
-    private String cat_date(String year, String month, String day, String time){
-        String full_date = month + '/' + day + '/' + year + ' ' + time;
-        return full_date;
-    }
-
 
     void imageChooser()
     {
