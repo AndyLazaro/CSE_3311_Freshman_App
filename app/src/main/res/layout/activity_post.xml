@@ -11,7 +11,87 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
+<<<<<<< Updated upstream
         tools:layout_editor_absoluteY="1dp">
+=======
+        tools:layout_editor_absoluteY="1dp"
+        android:gravity="center|top">
+
+        <ImageView
+            android:id="@+id/my_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/button_attach"
+            tools:ignore="NotSibling"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            >
+        </ImageView>
+
+        <EditText
+            android:id="@+id/post_des"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
+            android:inputType = "text"
+            android:text = "Type Description"
+            android:textColor="#777"
+            android:gravity = "top"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="340dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            />
+        <EditText
+            android:id="@+id/post_location"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
+            android:inputType = "text"
+            android:text = "Location"
+            android:textColor="#777"
+            android:gravity = "top"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="390dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            />
+        <EditText
+            android:id="@+id/post_name"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
+            android:inputType = "text"
+            android:text = "Event Name"
+            android:textColor="#777"
+            android:gravity = "top"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            />
+        <EditText
+            android:id="@+id/post_org"
+            android:layout_width = "match_parent"
+            android:layout_height="wrap_content"
+            android:inputType = "text"
+            android:text = "Organization"
+            android:textColor="#777"
+            android:gravity = "top"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="490dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center|bottom"
+            android:layout_marginTop="550dp">
+
+        </LinearLayout>
+
+>>>>>>> Stashed changes
 
         <LinearLayout
             android:layout_width="match_parent"
