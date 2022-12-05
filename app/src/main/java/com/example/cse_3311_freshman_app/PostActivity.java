@@ -61,10 +61,6 @@ public class PostActivity extends AppCompatActivity {
         post_location = findViewById(R.id.post_location);
         post_name = findViewById(R.id.post_name);
         post_org = findViewById(R.id.post_org);
-        //s_year = findViewById(R.id.start_month);
-        //s_month = findViewById(R.id.start_year);
-        //s_day = findViewById(R.id.start_day);
-        //s_time = findViewById(R.id.start_time);
 
         post_backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,10 +88,6 @@ public class PostActivity extends AppCompatActivity {
                 String org = post_org.getEditableText().toString();
                 String description = post_des.getEditableText().toString();
                 String location = post_location.getEditableText().toString();
-                //String start_year = s_year.getSelectedItem().toString();
-                //String start_month = s_month.getSelectedItem().toString();
-                //String start_day = s_day.getSelectedItem().toString();
-                //String start_time = s_time.getSelectedItem().toString();
 
                 //String full_date = cat_date(start_year, start_month, start_day, start_time);//get MM/dd/yyyy hh:mm string
                 //String img_data = getImgString(captureImage);
