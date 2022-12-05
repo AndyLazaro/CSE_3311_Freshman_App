@@ -68,24 +68,31 @@ public class edit_club extends AppCompatActivity
                 // Make spinner text
                 TextView categoryView = (TextView)categorySpinner.getSelectedView();
 
-                // Add org to database
-                //create org class
-                Organizations new_org = new Organizations(name_edit.getText().toString(), description_edit.getText().toString(), "", "", location_edit.getText().toString(), "", categoryView.getText().toString(), auth.getCurrentUser().getUid());
+                // Make changes to database
+                //Change org class
+               // org.setAddress(location_edit.getText().toString()));
+                org.setName(name_edit.getText().toString());
+                org.setDesc(description_edit.getText().toString());
+                //org.setEmail(email_edit.getText().toString());
+                org.setLocation(location_edit.getText().toString());
+                //org.setPNumber(pNumber_edit.getText().toString());
+                //org.setUid();
+                org.setCategory(categoryView.getText().toString());
+
 
                 // create hash map for org
-                Map<String, Object> org = new HashMap<>();
-                org.put("name", new_org.getName());
-                org.put("desc", new_org.getDesc());
-                org.put("address", new_org.getAddress());
-                org.put("email", new_org.getEmail());
-                org.put("location", new_org.getLocation());
-                org.put("pNumber", new_org.getPNumber());
-                org.put("uid", auth.getCurrentUser().getUid());         // Send user ID for verification
-                org.put("category", new_org.getCategory());
+                Map<String, Object> org_hash = new HashMap<>();
+                org_hash.put("desc", org.getDesc());
+                org_hash.put("address", org.getAddress());
+                org_hash.put("email", org.getEmail());
+                org_hash.put("location", org.getLocation());
+                org_hash.put("pNumber", org.getPNumber());
+                org_hash.put("uid", auth.getCurrentUser().getUid());         // Send user ID for verification
+                org_hash.put("category", org.getCategory());
 
                 // upload to db
-                db.collection("Organizations").document(new_org.getName())
-                        .set(org)
+                db.collection("Organizations").document(org.getName())
+                        .set(org_hash)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

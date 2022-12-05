@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     database = FirebaseFirestore.getInstance();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String UID = user.getUid();
-                                    User newUser = new User("none", "none");
+                                    User newUser = new User("none", null, UID);
                                     DocumentReference documentReference = database.collection("Users").document(UID);
                                     documentReference.set(newUser);
                                     //Send verify email to email address, must be verified in order to log in to app

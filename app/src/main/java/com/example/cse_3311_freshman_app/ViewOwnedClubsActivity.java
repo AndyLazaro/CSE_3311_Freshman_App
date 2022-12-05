@@ -67,7 +67,7 @@ public class ViewOwnedClubsActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
 
-        db.collection("/Organizations").whereEqualTo("uid", auth.getCurrentUser().getUid())
+        db.collection("/Organizations").whereEqualTo("uid", auth.getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>()
                 {
                     @SuppressLint("NotifyDataSetChanged")
