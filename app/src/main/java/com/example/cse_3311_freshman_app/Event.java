@@ -12,7 +12,7 @@ public class Event implements Serializable { // Serializable needed to send thru
     String e_org;
     String e_desc;              // String to hold the event description
     String e_location;          // String to hold the event location
-    String time;                // String to hold the event time
+    Date time;             // Timestamp to hold the event time
     String e_image;             // String to hold the event image
 
 
@@ -25,8 +25,7 @@ public class Event implements Serializable { // Serializable needed to send thru
         this.e_desc = e_desc;
         this.e_location = e_location;
         this.e_image = e_image;
-        //this.e_time = e_time;
-        this.time = new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time.toDate());
+        this.time = time.toDate();
     }
 
 
@@ -62,17 +61,17 @@ public class Event implements Serializable { // Serializable needed to send thru
         this.e_location = e_location;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }   // getter for event time
 
-    @Exclude    // @Exclude -> Don't save this on firebase
-    public void setTime(String time) {
-        this.time = time;
-    }   // setter for event time
+    public String getStringTime() {
+        return new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time);
+    }   // getter for event time in String format
 
-    public void setTime(Timestamp time) {   // setter for event time in timestamp format
-        this.time = new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time.toDate());
+    public void setTime(Date time) {   // setter for event time in timestamp format
+        this.time = time;
+        //this.time = new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time.toDate());
     }
 
     public String getE_image() {

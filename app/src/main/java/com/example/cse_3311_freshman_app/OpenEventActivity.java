@@ -50,7 +50,7 @@ public class OpenEventActivity extends AppCompatActivity {
         eOrg.setText(event.e_org);
         eDesc.setText(event.e_desc);
         eLoc.setText(event.e_location);
-        eTime.setText(event.time);
+        eTime.setText(event.getStringTime());
         Glide.with(getApplicationContext()).load(event.getE_image()).apply(new RequestOptions().override(1000,1000)).into(img);
     }
 
