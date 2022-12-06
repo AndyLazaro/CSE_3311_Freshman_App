@@ -162,8 +162,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        retrieveFollowedOrgs();
-        eventChange();
+        if (user != null)
+        {
+            retrieveFollowedOrgs();
+            eventChange();
+        }
     }
 
     //private void retrieveFollowedOrgs()
