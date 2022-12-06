@@ -11,8 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSE_3311_Freshman_App">
-
         <activity
+<<<<<<< HEAD
+            android:name=".PostActivity"
+            android:exported="false"
+            android:label="@string/title_activity_post"
+            android:theme="@style/Theme.CSE_3311_Freshman_App.NoActionBar" />
+        <activity
+=======
             android:name=".edit_club"
             android:exported="false"
             android:label="@string/title_activity_edit_club"
@@ -37,6 +43,7 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
+>>>>>>> e0e555e36800f9636ef191bc0570f32f23346155
             android:name=".RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_login.xml" value="0.11170212765957446" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_post.xml" value="0.2296875" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_register.xml" value="0.2296875" />
+=======
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_club_page.xml" value="0.1" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_create_club.xml" value="0.1" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_edit_club.xml" value="0.1" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_event_page.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_forgot_password.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_login.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_main.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_profile_page.xml" value="0.16" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_register.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/content_edit_club.xml" value="0.16621376811594202" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/content_main.xml" value="0.11458333333333333" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/content_profile_page.xml" value="0.9233870967741935" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/event_block.xml" value="0.246875" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/fragment_first.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/resource_club_name_viewer.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/Camer/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/resource_list_viewer.xml" value="0.25317028985507245" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_create_club.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/drago/Documents/GitHub/CSE_3311_Freshman_App/app/src/main/res/layout/activity_post.xml" value="0.2246376811594203" />
+>>>>>>> e0e555e36800f9636ef191bc0570f32f23346155
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_button.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/custom_input.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/email_highlighted.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/email_input.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.17" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/password_highlighted.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/drawable/password_input.xml" value="0.175" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_main.xml" value="0.2804617357845233" />
+        <entry key="..\:/Users/yepit/StudioProjects/CSE_3311_Freshman_App/app/src/main/res/layout/activity_register.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1933876811594203" />
+      </ProjectState>
+    </option>
+  </component>
+</project>
