@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -25,6 +27,9 @@ public class ClubProfileActivity extends AppCompatActivity {
     // Button
     Button followButton;
     ImageButton homeBtn, refreshBtn, postBtn, searchBtn, profileBtn;    // buttons for the tabs below
+
+    // Organization holder
+    Organizations club;
 
     // Firebase Placeholders
     TextView clubName;
@@ -65,6 +70,10 @@ public class ClubProfileActivity extends AppCompatActivity {
         clubAvatar = findViewById(R.id.club_avatar);
         followButton = findViewById(R.id.follow_club_button);
 
+        // retrieve club from recycler_adapter_search
+        club = (Organizations) getIntent().getSerializableExtra("CLUB");
+        populateClubPage();
+
         
 
 //------------Home button-------------------------------------------------
@@ -99,8 +108,6 @@ public class ClubProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//TODO: Search Clubs Button
 //-----------Search Clubs button-------------------------------------------------
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,5 +129,16 @@ public class ClubProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // Method to populate the club profile page with the club info
+    public void populateClubPage() {
+        clubName.setText(club.name);
+        locationInfo.setText(club.location);
+        emailInfo.setText(club.email);
+        pnumberInfo.setText(club.pNumber);
+        addressInfo.setText(club.address);
+        descInfo.setText(club.desc);
+        //Glide.with(getApplicationContext()).load(club.getE_image()).apply(new RequestOptions().override(1000,1000)).into(img);
     }
 }

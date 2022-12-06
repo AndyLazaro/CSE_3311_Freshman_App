@@ -41,15 +41,14 @@ public class recycler_adapter_search extends RecyclerView.Adapter<recycler_adapt
     @Override   // sets the data in the event to the value of the event name in the event class
     public void onBindViewHolder(@NonNull recycler_adapter_search.MyViewHolder holder, int position) {
         Organizations club = clubs.get(position); // attach the event to the position on the page it is in
-        holder.itemView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> { // attach the listener on the individual items
             Intent intent = new Intent(context, ClubProfileActivity.class);
-            intent.putExtra("CLUB", String.valueOf(club));
-
-            //TODO: send in club info to activity
-
-            context.startActivity(intent);
+            intent.putExtra("CLUB", club);
+            context.startActivity(intent);      // Starts up the club profile
         });
         holder.clubName.setText(club.name);
+        //holder.desc.setText(club.desc);
+        //holder.location.setText(club.location);
     }
 
     @Override   // getter for getting the amount of events in the database
