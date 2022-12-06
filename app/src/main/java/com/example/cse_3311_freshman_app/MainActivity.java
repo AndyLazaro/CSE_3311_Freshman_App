@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         signOutBtn = findViewById(R.id.button_logout);  // connect variable to button
         auth = FirebaseAuth.getInstance();              // connect variable to firebase
 

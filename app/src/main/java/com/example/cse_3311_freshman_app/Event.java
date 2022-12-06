@@ -15,7 +15,6 @@ public class Event implements Serializable { // Serializable needed to send thru
     Date time;             // Timestamp to hold the event time
     String e_image;             // String to hold the event image
 
-
     public Event() {}           // Default constructor
 
     // Constructor assigning event aspects
