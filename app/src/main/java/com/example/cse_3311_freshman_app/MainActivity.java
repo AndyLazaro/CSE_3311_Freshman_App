@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
 
-//------------Sign out the user and send back to login page---------------
+//------------Sign out the user and send back to login page
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,8 +172,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent (MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-            retrieveFollowedOrgs();
-
+        }
+        if (user != null)
+        {
             retrieveFollowedOrgs();
             eventChange();
         }
