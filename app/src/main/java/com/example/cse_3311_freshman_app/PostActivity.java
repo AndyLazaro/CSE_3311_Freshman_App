@@ -53,7 +53,7 @@ public class PostActivity extends AppCompatActivity {
 
     FirebaseFirestore db_base;
     CollectionReference db_ref;
-
+    String date_str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +103,11 @@ public class PostActivity extends AppCompatActivity {
                 String location = post_location.getEditableText().toString();
                 //String img_data = getImgString(captureImage);
                 Timestamp timestamp = Timestamp.now();
+                String des_str = description + " "+ date_str;
                 String img_data = "https://resources.uta.edu/advancement/identity/_images/new-logos/a-logo-wordmark.jpg";
 
-                Event post_event = new Event(name, org, description, location, timestamp, img_data);
+                //Event post_event = new Event(name, org, description, location, timestamp, img_data);
+                Event post_event = new Event(name, org, des_str, location, timestamp, img_data);
                 db_ref.add(post_event);//post the event data to database
 
                 //-------------Close post window after posting event----------------
@@ -195,6 +197,7 @@ public class PostActivity extends AppCompatActivity {
     private String makeDateString(int day, int month, int year)
     {
         //get time_int
+        date_str = month+"/"+day+"/"+year;
         return getMonthFormat(month) + " " + day + " " + year;
     }
 
