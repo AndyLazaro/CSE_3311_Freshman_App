@@ -116,7 +116,7 @@ public class SearchClubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();//finish current activity
-                Intent intent = new Intent(SearchClubActivity.this, CreateClubActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Profile_Page.class);
                 startActivity(intent);//start current activity again
             }
         });
