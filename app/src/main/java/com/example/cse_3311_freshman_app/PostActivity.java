@@ -4,6 +4,7 @@ package com.example.cse_3311_freshman_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,9 +16,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +31,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.ByteArrayOutputStream;
@@ -33,12 +42,21 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class PostActivity extends AppCompatActivity {
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
     EditText post_des, post_location, post_name, post_org;
     int SELECT_PICTURE = 200;
+
+    String image_URL;
+    String name;
+    String org;
+    String description;
+    String location;
+    Timestamp timestamp;
 
     FirebaseFirestore db_base;
     CollectionReference db_ref;
@@ -72,10 +90,12 @@ public class PostActivity extends AppCompatActivity {
 
         post_attachBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
+                String image_name = "";
                 imageChooser();
             }
+
+
         });
 
         //------------------Unfinished-----------------------------------
@@ -83,22 +103,18 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //post content
-                String name = post_name.getEditableText().toString();
-                String org = post_org.getEditableText().toString();
-                String description = post_des.getEditableText().toString();
-                String location = post_location.getEditableText().toString();
+                name = post_name.getEditableText().toString();
+                org = post_org.getEditableText().toString();
+                description = post_des.getEditableText().toString();
+                location = post_location.getEditableText().toString();
 
                 //String img_data = getImgString(captureImage);
-                Timestamp timestamp = Timestamp.now();
+                timestamp = Timestamp.now();
+
+                // upload image
+                upload_image();
+
                 String img_data = "https://firebasestorage.googleapis.com/v0/b/freshmen-app.appspot.com/o/images%2Frefresh-the-day-lemonade-stand-and-banner.jpg?alt=media&token=0cfda8e5-cb6c-4596-9356-dba0df993537";
-
-                Event post_event = new Event(name, org, description, location, timestamp, img_data);
-                db_ref.add(post_event);//post the event data to database
-
-                //-------------Close post window after posting event----------------
-                finish();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -145,5 +161,83 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void upload_image() {
+        String image_name = generate_file_name();
+        // Get storage reference to specific image
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        // Create a reference to 'images/mountains.jpg'
+        final StorageReference image_path_ref = storageRef.child(image_name);
+
+        // Get image bit map
+        // Get the data from an ImageView as bytes
+        if (captureImage != null) {
+            captureImage.setDrawingCacheEnabled(true);
+            captureImage.buildDrawingCache();
+            Bitmap bitmap = ((BitmapDrawable) captureImage.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            UploadTask uploadTask = image_path_ref.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    Toast.makeText(PostActivity.this, "Image upload processing.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return image_path_ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        image_URL = downloadUri.toString();
+                        Toast.makeText(PostActivity.this, "Image upload success.", Toast.LENGTH_SHORT).show();
+
+                        // complete post
+                        Event post_event = new Event(name, org, description, location, timestamp, image_URL);
+                        db_ref.add(post_event);//post the event data to database
+
+                        //-------------Close post window after posting event----------------
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(PostActivity.this, "Image upload failed. Try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    protected String generate_file_name() {
+        String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder name = new StringBuilder();
+        Random rnd = new Random();
+        while (name.length() < 20) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * CHARS.length());
+            name.append(CHARS.charAt(index));
+        }
+        String name_string = name.toString();
+        return name_string;
     }
 }
