@@ -90,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
 
-        retrieveFollowedOrgs();
-        eventChange();
-
 //------------Sign out the user and send back to login page
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        retrieveFollowedOrgs();
+        eventChange();
     }
 
     //private void retrieveFollowedOrgs()
