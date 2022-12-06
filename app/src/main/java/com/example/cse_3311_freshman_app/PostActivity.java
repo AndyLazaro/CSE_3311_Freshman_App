@@ -101,11 +101,9 @@ public class PostActivity extends AppCompatActivity {
                 String org = post_org.getEditableText().toString();
                 String description = post_des.getEditableText().toString();
                 String location = post_location.getEditableText().toString();
-
                 //String img_data = getImgString(captureImage);
-
                 Timestamp timestamp = Timestamp.now();
-                String img_data = "https://firebasestorage.googleapis.com/v0/b/freshmen-app.appspot.com/o/images%2Frefresh-the-day-lemonade-stand-and-banner.jpg?alt=media&token=0cfda8e5-cb6c-4596-9356-dba0df993537";
+                String img_data = "https://resources.uta.edu/advancement/identity/_images/new-logos/a-logo-wordmark.jpg";
 
                 Event post_event = new Event(name, org, description, location, timestamp, img_data);
                 db_ref.add(post_event);//post the event data to database
@@ -196,6 +194,7 @@ public class PostActivity extends AppCompatActivity {
 
     private String makeDateString(int day, int month, int year)
     {
+        //get time_int
         return getMonthFormat(month) + " " + day + " " + year;
     }
 
