@@ -313,7 +313,7 @@
         android:id="@+id/follow_club_button"
         android:layout_width="377dp"
         android:layout_height="76dp"
-        android:text="Follow Club"
+        android:text="Follow/Unfollow Club"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"

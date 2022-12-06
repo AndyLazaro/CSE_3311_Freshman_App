@@ -7,13 +7,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ClubProfileActivity extends AppCompatActivity {
 
@@ -39,6 +44,10 @@ public class ClubProfileActivity extends AppCompatActivity {
     TextView addressInfo;
     TextView descInfo;
     ImageView clubAvatar;
+
+    // Query variables for following a club
+    Query qUsers;
+    Query qUsers1;
 
     ///////////////////////////////////////////////////////////////////////////////
     // On creation of the page
@@ -141,4 +150,43 @@ public class ClubProfileActivity extends AppCompatActivity {
         descInfo.setText(club.desc);
         //Glide.with(getApplicationContext()).load(club.getE_image()).apply(new RequestOptions().override(1000,1000)).into(img);
     }
+
+    // Method to follow the club if the follow/unfollow button is clicked
+    /*
+    public void RSVP(View view) {
+        qUsers.get().addOnCompleteListener( qr -> { // query event from db that matches current event's name
+            if (qr.isSuccessful()) {
+                String docRef = ""; // temp documentReference val storage
+                for (QueryDocumentSnapshot doc : qr.getResult()) { // for loop but only ever one item in list
+                    docRef = doc.getId(); // iterate thru results and update docRef val
+                }
+                String finalDocRef = docRef; // final docRef val
+                qUsers1.get().addOnCompleteListener(r -> { // query doc and check if uid is present in array "rsvp"
+                    if (r.isSuccessful()) {
+                        QuerySnapshot res = r.getResult();
+                        if (res.isEmpty()) { // if the result is empty, then add uid
+                            db.collection("Users").document(finalDocRef)
+                                    //.update("followedClubs", FieldValue.arrayUnion(auth.getCurrentUser().getUid()))
+                                    .update("followedClubs", FieldValue.arrayUnion(club.name))
+                                    .addOnCompleteListener(u -> {
+                                        if (u.isSuccessful()) {
+                                            Toast.makeText(ClubProfileActivity.this, "Followed " + club.name, Toast.LENGTH_SHORT).show(); // if all succesful, send toast
+                                        }
+                                    });
+                        } else { // if club found, then remove club
+                            db.collection("Users").document(finalDocRef)
+                                    .update("followedClubs", FieldValue.arrayRemove(club.name))
+                                    .addOnCompleteListener(u -> {
+                                        if (u.isSuccessful()) {
+                                            Toast.makeText(ClubProfileActivity.this, "Unfollowed " + club.name, Toast.LENGTH_SHORT).show(); // if all succesful, send toast
+                                        }
+                                    });
+                        }
+                    }
+                });
+            }
+        });
+    }
+    */
+
 }
