@@ -44,6 +44,9 @@ public class recycler_adapter_search extends RecyclerView.Adapter<recycler_adapt
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ClubProfileActivity.class);
             intent.putExtra("CLUB", String.valueOf(club));
+
+            //TODO: send in club info to activity
+
             context.startActivity(intent);
         });
         holder.clubName.setText(club.name);

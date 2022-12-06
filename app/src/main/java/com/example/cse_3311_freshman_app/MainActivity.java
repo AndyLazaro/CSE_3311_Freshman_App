@@ -90,10 +90,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
 
-        retrieveFollowedOrgs();
-        eventChange();
-
-//------------Sign out the user and send back to login page
+//------------Sign out the user and send back to login page---------------
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent intent = new Intent(MainActivity.this, SearchClubActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 //-------------------------------------------------------------------------------
@@ -175,12 +172,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent (MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+            retrieveFollowedOrgs();
+
+            retrieveFollowedOrgs();
+            eventChange();
         }
     }
 
-    // Queries the events in the database
-    private void eventchange()
-    //private void retrieveFollowedOrgs()
 
     private void retrieveFollowedOrgs()
     {
@@ -204,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
             });
     }
 
+    // Queries the events in the database
     private void eventChange()
     {
         db.collection("/Events")        // query from this location
