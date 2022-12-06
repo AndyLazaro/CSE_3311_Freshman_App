@@ -4,17 +4,23 @@ package com.example.cse_3311_freshman_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.net.Uri;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.widget.Spinner;
+import android.widget.DatePicker;
+import android.app.DatePickerDialog;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,9 +38,11 @@ import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 public class PostActivity extends AppCompatActivity {
+    private static final String TAG = "PostActivity";
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
     EditText post_des, post_location, post_name, post_org;
@@ -43,13 +51,13 @@ public class PostActivity extends AppCompatActivity {
     FirebaseFirestore db_base;
     CollectionReference db_ref;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         db_base = FirebaseFirestore.getInstance();
         db_ref = db_base.collection("Events");
-
         setContentView(R.layout.activity_post);
 
         post_backBtn = findViewById(R.id.button_back);
@@ -88,8 +96,8 @@ public class PostActivity extends AppCompatActivity {
                 String description = post_des.getEditableText().toString();
                 String location = post_location.getEditableText().toString();
 
-                //String full_date = cat_date(start_year, start_month, start_day, start_time);//get MM/dd/yyyy hh:mm string
                 //String img_data = getImgString(captureImage);
+
                 Timestamp timestamp = Timestamp.now();
                 String img_data = "https://firebasestorage.googleapis.com/v0/b/freshmen-app.appspot.com/o/images%2Frefresh-the-day-lemonade-stand-and-banner.jpg?alt=media&token=0cfda8e5-cb6c-4596-9356-dba0df993537";
 
