@@ -77,10 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = emailEt.getText().toString();
                 //Check to see if email address is from UTA only
-                //if (!email.contains("@mavs.uta.edu") && !email.contains("@uta.edu"))
-                //{
-                //  email = "badEmail";
-                //}
+                if (!email.contains("@mavs.uta.edu") && !email.contains("@uta.edu"))
+                {
+                  email = "badEmail";
+                }
                 String password = passwordEt.getText().toString();
                 String confirm_password = confirm_passwordEt.getText().toString();
 
