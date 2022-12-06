@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
 
-        retrieveFollowedOrgs();
+        //retrieveFollowedOrgs();
         eventChange();
 
 //------------Sign out the user and send back to login page
