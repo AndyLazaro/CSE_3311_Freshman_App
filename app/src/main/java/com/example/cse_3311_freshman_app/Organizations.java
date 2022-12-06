@@ -1,25 +1,30 @@
 package com.example.cse_3311_freshman_app;
 
-public class Organizations {
+import java.io.Serializable;
+
+public class Organizations implements Serializable {
     String name;
     String desc;
-    String cAddress;
-    String cEmail;
+    String address;
+    String email;
     String location;
-    String cPhoneNumber;
+    String pNumber;
     String category;
+    String uid;
+    String rsvp [];
 
     public Organizations() {
     }
 
-    public Organizations(String name, String desc, String cAddress, String cEmail, String location, String cPhoneNumber, String category) {
+    public Organizations(String name, String desc, String cAddress, String cEmail, String location, String cPhoneNumber, String category, String uid) {
         this.name = name;
         this.desc = desc;
-        this.cAddress = cAddress;
-        this.cEmail = cEmail;
+        this.address = cAddress;
+        this.email = cEmail;
         this.location = location;
-        this.cPhoneNumber = cPhoneNumber;
+        this.pNumber = cPhoneNumber;
         this.category = category;
+        this.uid = uid;
     }
 
     public String getName() {
@@ -38,20 +43,20 @@ public class Organizations {
         this.desc = location;
     }
 
-    public String getCAddress() {
-        return cAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCAddress(String cAddress) {
-        this.cAddress = cAddress;
+    public void setAddress(String cAddress) {
+        this.address = cAddress;
     }
 
-    public String getCEmail() {
-        return cEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCEmail(String cEmail) {
-        this.cEmail = cEmail;
+    public void setEmail(String cEmail) {
+        this.email = cEmail;
     }
 
     public String getLocation() {
@@ -62,12 +67,12 @@ public class Organizations {
         this.location = location;
     }
 
-    public String getCPhoneNumber() {
-        return cPhoneNumber;
+    public String getPNumber() {
+        return pNumber;
     }
 
-    public void setCPhoneNumber(String cPhoneNumber) {
-        this.cPhoneNumber = cPhoneNumber;
+    public void setPNumber(String cPhoneNumber) {
+        this.pNumber = cPhoneNumber;
     }
 
     public String getCategory() {
@@ -75,5 +80,11 @@ public class Organizations {
     }
 
     public void setCategory(String category) {this.category = category;}
+
+    public void setUid(String uid) {this.uid = uid;}
+
+    public String getUid() {return uid;}
+
+    public void setRSVP(String rsvp[]){this.rsvp = rsvp;}
 
 }
