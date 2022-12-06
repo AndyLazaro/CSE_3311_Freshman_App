@@ -226,9 +226,9 @@ public class MainActivity extends AppCompatActivity {
                                 events.add(dc.getDocument().toObject(Event.class));     // add this query to the events arraylist
                             }
                             adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
+                            filterEventList();
+                            adapterPersonal.notifyDataSetChanged();
                         }
-
-
                     }
                 });
 
