@@ -245,6 +245,16 @@ public class club_page extends AppCompatActivity {
             }
         });
 
+//-----------Search Clubs button-------------------------------------------------
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), SearchClubActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
