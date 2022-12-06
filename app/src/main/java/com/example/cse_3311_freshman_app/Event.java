@@ -28,9 +28,6 @@ public class Event implements Serializable { // Serializable needed to send thru
         //this.time = time;
     }
 
-    }
-
-
     public String getE_name() {
         return e_name;
     }   // getter for event name

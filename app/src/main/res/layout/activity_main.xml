@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="75dp"
-    android:layout_marginBottom="10dp"
     tools:context=".MainActivity">
 
     <!--Recycler view for events-->
@@ -27,13 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:layout_alignParentRight="true"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|bottom"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -70,11 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Home"
-            app:srcCompat="@drawable/home_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Home"
             android:padding="10dp"
@@ -88,11 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Refresh"
-            app:srcCompat="@drawable/refresh_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Refresh"
             android:padding="10dp"
@@ -106,11 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Post"
-            app:srcCompat="@drawable/circle_plus_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Post"
             android:padding="10dp"
@@ -124,11 +99,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Search"
-            app:srcCompat="@drawable/search_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Search"
             android:padding="10dp"
@@ -142,15 +112,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Profile"
-            app:srcCompat="@drawable/profile_icon_png" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/profile_icon" />
 
     </LinearLayout>
 
