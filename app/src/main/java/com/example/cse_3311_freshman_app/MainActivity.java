@@ -138,6 +138,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//-----------Search Clubs button-------------------------------------------------
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(MainActivity.this, SearchClubActivity.class);
+                startActivity(intent);
+            }
+        });
+//-------------------------------------------------------------------------------
+
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //private void retrieveFollowedOrgs()
 
     private void retrieveFollowedOrgs()
     {
@@ -193,33 +203,34 @@ public class MainActivity extends AppCompatActivity {
             });
     }
 
+    // Queries the events in the database
     private void eventChange()
     {
-        db.collection("/Events")
-            .addSnapshotListener(new EventListener<QuerySnapshot>()
-            {
-                @SuppressLint("NotifyDataSetChanged")
-                @Override
-                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
+        db.collection("/Events")        // query from this location
+                .addSnapshotListener(new EventListener<QuerySnapshot>()     // Hold the data from firebase in this snapshot
                 {
-                    if(error != null)
+                    @SuppressLint("NotifyDataSetChanged")   // ignore this error if made
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
                     {
-                        Log.e("Firestore Error",error.getMessage());
-                        return;
-                    }
-
-                    for(DocumentChange dc : value.getDocumentChanges())
-                    {
-                        if(dc.getType() == DocumentChange.Type.ADDED)
+                        if(error != null)   // if there's an error and the query fails
                         {
-                            events.add(dc.getDocument().toObject(Event.class));
+                            Log.e("Firestore Error",error.getMessage());    // log that there was a firestore error
+                            return;
                         }
-                        adapter.notifyDataSetChanged();
-                        filterEventList();
-                        adapterPersonal.notifyDataSetChanged();
+
+                        for(DocumentChange dc : value.getDocumentChanges())     // for all entries in this location
+                        {
+                            if(dc.getType() == DocumentChange.Type.ADDED)   // if a query is found
+                            {
+                                events.add(dc.getDocument().toObject(Event.class));     // add this query to the events arraylist
+                            }
+                            adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
+                        }
+
+
                     }
-                }
-            });
+                });
 
     }
 

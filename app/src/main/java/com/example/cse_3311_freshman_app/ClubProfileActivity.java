@@ -65,6 +65,8 @@ public class ClubProfileActivity extends AppCompatActivity {
         clubAvatar = findViewById(R.id.club_avatar);
         followButton = findViewById(R.id.follow_club_button);
 
+        
+
 //------------Home button-------------------------------------------------
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

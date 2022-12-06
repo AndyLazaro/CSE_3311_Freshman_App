@@ -78,25 +78,14 @@ public class SearchClubActivity extends AppCompatActivity {
 
         clubchange();
 
-
-        //Sign out the user and send back to login page
-        signOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                Intent intent = new Intent(SearchClubActivity.this, LoginActivity.class);
-                //intent.putExtra("auth", auth);
-                startActivity(intent);
-            }
-        });
 //------------Home button-------------------------------------------------
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                finish();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -105,9 +94,9 @@ public class SearchClubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                finish();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 //-----------App crashes when post button is pressed; needs work. Fixed---------
