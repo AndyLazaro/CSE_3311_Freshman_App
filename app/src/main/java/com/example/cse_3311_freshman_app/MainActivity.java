@@ -172,6 +172,28 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+            .addSnapshotListener(new EventListener<QuerySnapshot>()
+            {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
+                {
+                    if(error != null)
+                    {
+                        Log.e("Firestore Error",error.getMessage());
+                        return;
+                    }
+
+                    for(DocumentChange dc : value.getDocumentChanges())
+                    {
+                        if(dc.getType() == DocumentChange.Type.ADDED)
+                        {
+                            events.add(dc.getDocument().toObject(Event.class));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            });
 
     }
 

@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="75dp"
-    android:layout_marginBottom="10dp"
-    tools:context=".MainActivity">
-
-    <!--Recycler view for events-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/events_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_title" />
-
-    <!--Sign out button-->
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Out"
-        android:layout_alignParentRight="true"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|bottom"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent" />
+    tools:context=".club_page">
 
     <!--Textview for the title-->
     <TextView
@@ -50,6 +20,80 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--- Text layout for top bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/events_list"
+        app:layout_constraintStart_toStartOf="@+id/events_list"
+        app:layout_constraintTop_toBottomOf="@+id/app_title">
+
+        <TextView
+            android:id="@+id/club_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="Club Name"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/club_email_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="Club Number"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/edit_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/club_name_view" />
+
+        <TextView
+            android:id="@+id/club_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="Club Description"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/edit_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/club_email_view" />
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/club_name_view"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Recycler view for events-->
+
+    <!--Sign out button-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/events_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <!--Layout containing the bottom tabs-->
     <LinearLayout
@@ -70,11 +114,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Home"
-            app:srcCompat="@drawable/home_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Home"
             android:padding="10dp"
@@ -88,11 +127,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Refresh"
-            app:srcCompat="@drawable/refresh_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Refresh"
             android:padding="10dp"
@@ -106,11 +140,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Post"
-            app:srcCompat="@drawable/circle_plus_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Post"
             android:padding="10dp"
@@ -124,11 +153,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:background="@android:color/transparent"
-            android:padding = "10dp"
-            android:contentDescription="Search"
-            app:srcCompat="@drawable/search_icon" 
             android:background="@android:color/transparent"
             android:contentDescription="Search"
             android:padding="10dp"
@@ -142,16 +166,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
             android:background="@android:color/transparent"
-            android:padding = "10dp"
             android:contentDescription="Profile"
-            app:srcCompat="@drawable/profile_icon_png" />
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/profile_icon" />
 
     </LinearLayout>
-
-</RelativeLayout>
-
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

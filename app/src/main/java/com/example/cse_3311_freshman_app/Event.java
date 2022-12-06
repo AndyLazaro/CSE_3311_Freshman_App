@@ -15,7 +15,6 @@ public class Event implements Serializable { // Serializable needed to send thru
     Date time;             // Timestamp to hold the event time
     String e_image;             // String to hold the event image
 
-
     public Event() {}           // Default constructor
 
     // Constructor assigning event aspects
@@ -28,6 +27,9 @@ public class Event implements Serializable { // Serializable needed to send thru
         this.time = time.toDate();
         //this.time = time;
     }
+
+    }
+
 
     public String getE_name() {
         return e_name;
@@ -69,7 +71,7 @@ public class Event implements Serializable { // Serializable needed to send thru
         return new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time);
     }   // getter for event time in String format
 
-    public void setTime(Date date) {   // setter for event time in timestamp format
+    public void setTime(Date time) {   // setter for event time in timestamp format
         this.time = time;
         //this.time = new SimpleDateFormat("MM/dd/yyyy  h:mm aa").format(time.toDate());
     }

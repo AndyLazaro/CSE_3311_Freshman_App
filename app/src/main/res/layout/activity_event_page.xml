@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/utaorange"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/eventInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:background="@color/utaorange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--Textview for holding the name of the event-->
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/event_border"
+            android:gravity="center"
+            android:text="eName"/>
+
+        <!--Textview for holding the name of the event's organizer-->
+        <TextView
+            android:id="@+id/eventOrgName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:textSize="16sp"
+            android:text="eOrgName" />
+
+        <!--Textview for holding the location of the event-->
+        <TextView
+            android:id="@+id/eventLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:textSize="16sp"
+            android:text="eLocation" />
+
+        <!--Textview for holding the time of the event-->
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:textSize="16sp"
+            android:text="eTime"/>
+        
+        <!--ImageView for holding the image of the event-->
+        <ImageView
+            android:id="@+id/eventImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/profile_icon"
+            android:layout_margin="12dp"
+            android:contentDescription="@string/banner_for_event"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+        </ImageView>
+
+        <!--Textview for holding the descripton of the event-->
+        <TextView
+            android:id="@+id/eventDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:textSize="14sp"
+            android:text="eDesc"/>
+
+        <!--Button for RSVP function-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/utablue"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:text="RSVP"
+            android:onClick="RSVP">
+        </Button>
+
+    </LinearLayout>
+
+</ScrollView  >

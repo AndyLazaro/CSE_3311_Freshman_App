@@ -12,12 +12,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MavMatch"
-        android:textColor="@color/utablack"
-        android:textSize="40sp"
-        android:textAlignment="center"
+        android:layout_marginBottom="70dp"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="70dp"/>
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:fontFamily="sans-serif-black" />
 
     <EditText
         android:id="@+id/login_email_et"
@@ -28,7 +28,7 @@
         android:drawableStart="@drawable/email_input"
         android:drawableLeft="@drawable/email_input"
         android:drawablePadding="10dp"
-        android:hint="Email:"
+        android:hint="example@mavs.uta.edu"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         android:textColor="@color/utablack"
@@ -48,6 +48,16 @@
         android:paddingStart="10dp"
         android:textColor="@color/utablack"
         android:textColorHint="@color/utagrey" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:text="Show Password"
+        android:textColor="@color/utaorange"
+        android:buttonTint="@color/utaorange"
+        android:id="@+id/login_showpass"/>
+
 
     <Button
         android:layout_width="match_parent"
@@ -72,6 +82,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test app" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/utaorange"
+        android:clickable="true"
+        android:id="@+id/login_to_forgotPass" />
 
     <ProgressBar
         android:layout_width="match_parent"

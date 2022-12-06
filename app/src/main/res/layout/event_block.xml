@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:id="@+id/EventBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:padding="6dp"
+        android:background="@color/utaorange"
+        android:columnCount="2"
+        android:rowCount="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:text="eName" />
+
+        <TextView
+            android:id="@+id/eventOrgName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:text="eOrgName" />
+
+        <TextView
+            android:id="@+id/eventLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:text="eLocation" />
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/event_border"
+            android:text="eLocation" />
+
+        <!--<ImageView
+            android:id="@+id/eventImage"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:src="@drawable/profile_icon">
+        </ImageView>-->
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
