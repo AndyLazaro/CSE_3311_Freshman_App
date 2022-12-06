@@ -77,10 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = emailEt.getText().toString();
                 //Check to see if email address is from UTA only
-                //if (!email.contains("@mavs.uta.edu") && !email.contains("@uta.edu"))
-                //{
-                //  email = "badEmail";
-                //}
+                if (!email.contains("@mavs.uta.edu") && !email.contains("@uta.edu"))
+                {
+                  email = "badEmail";
+                }
                 String password = passwordEt.getText().toString();
                 String confirm_password = confirm_passwordEt.getText().toString();
 
@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     database = FirebaseFirestore.getInstance();
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String UID = user.getUid();
-                                    User newUser = new User("none", "none");
+                                    User newUser = new User("none", null, UID);
                                     DocumentReference documentReference = database.collection("Users").document(UID);
                                     documentReference.set(newUser);
                                     //Send verify email to email address, must be verified in order to log in to app

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -41,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
     //creating variables for the database and recycler view
     RecyclerView recyclerView;      // variable for interacting with the recyclerview in the activity
-    ArrayList<Event> events;        // events to be held in the recycler adapter
-    recycler_adapter adapter;       // variable to hold the adapter for connecting recycler view with db data
+    ArrayList<Event> events, followedOrgEvents;        // events to be held in the recycler adapter
+    ArrayList<String> followedOrgs;
+    recycler_adapter adapter, adapterPersonal;       // variable to hold the adapter for connecting recycler view with db data
     FirebaseFirestore db;           // variable to hold the firestore database in firebase
     ProgressDialog progressDialog;
 
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         signOutBtn = findViewById(R.id.button_logout);  // connect variable to button
         auth = FirebaseAuth.getInstance();              // connect variable to firebase
@@ -67,19 +70,27 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.events_list);  // connect variable to recycler view
         recyclerView.setHasFixedSize(true);             // keep the recycler view a fixed size
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));   // give the recycler view a linear layout
 
         db = FirebaseFirestore.getInstance();           // connect variable to firestore database
         events = new ArrayList<Event>();                // initialize events arraylist. Should already contain data from firebase due to connection
-        adapter = new recycler_adapter(MainActivity.this,events);   // initialize the adapter & make it hold the events arraylist
+        followedOrgEvents = new ArrayList<Event>();
+        followedOrgs = new ArrayList<String>();
 
-        recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
+        adapter = new recycler_adapter(MainActivity.this, events);   // initialize the adapter & make it hold the events arraylist
+        adapterPersonal = new recycler_adapter(MainActivity.this, followedOrgEvents);
 
-        eventchange();
+        //recyclerView.setAdapter(adapter);               // attach the new adapter to the recyclerview to connect it and the events
+        //recyclerView.setAdapter(adapterPersonal);
 
+        if (getIntent().hasExtra("CONTENT") && getIntent().getStringExtra("CONTENT").equals("Personal")) {
+            recyclerView.setAdapter(adapterPersonal);
+            //Toast.makeText(MainActivity.this, "Personal", Toast.LENGTH_SHORT).show();
+        } else {
+            recyclerView.setAdapter(adapter);
+        }
 
-        //Sign out the user and send back to login page
+//------------Sign out the user and send back to login page
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,8 +106,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 finish();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //startActivity(intent);
+                //recyclerView.setAdapter(adapterPersonal);
+                Intent intent = getIntent();
+                intent.putExtra("CONTENT", "All");
+                startActivity(intent);//start current activity again
             }
         });
 
@@ -105,7 +120,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();//finish current activity
-                startActivity(getIntent());//start current activity again
+                //recyclerView.setAdapter(adapter);
+                Intent intent = getIntent();
+                intent.putExtra("CONTENT", "Personal");
+                startActivity(intent);//start current activity again
             }
         });
 //-----------App crashes when post button is pressed; needs work. Fixed---------
@@ -120,23 +138,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//-----------Search Clubs button-------------------------------------------------
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SearchClubActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-//-------------------------------------------------------------------------------
-
         // Profile button will go to create club for now while testing
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();//finish current activity
-                Intent intent = new Intent(MainActivity.this, CreateClubActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Profile_Page.class);
                 startActivity(intent);//start current activity again
             }
         });
@@ -155,37 +162,75 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        if (user != null)
+        {
+            retrieveFollowedOrgs();
+            eventChange();
+        }
     }
 
-    // Queries the events in the database
-    private void eventchange()
+    //private void retrieveFollowedOrgs()
+
+    private void retrieveFollowedOrgs()
     {
-        db.collection("/Events")        // query from this location
-                .addSnapshotListener(new EventListener<QuerySnapshot>()     // Hold the data from firebase in this snapshot
+        db.collection("Users").document(auth.getCurrentUser().getUid())
+                .addSnapshotListener(new EventListener<DocumentSnapshot>(){
+                @SuppressLint("NotifyDataSetChanged")
+                //@Override
+                public void onEvent(@Nullable DocumentSnapshot  value, @Nullable FirebaseFirestoreException error)
                 {
-                    @SuppressLint("NotifyDataSetChanged")   // ignore this error if made
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
+                    if(error != null)
                     {
-                        if(error != null)   // if there's an error and the query fails
-                        {
-                            Log.e("Firestore Error",error.getMessage());    // log that there was a firestore error
-                            return;
-                        }
-
-                        for(DocumentChange dc : value.getDocumentChanges())     // for all entries in this location
-                        {
-                            if(dc.getType() == DocumentChange.Type.ADDED)   // if a query is found
-                            {
-                                events.add(dc.getDocument().toObject(Event.class));     // add this query to the events arraylist
-                            }
-                            adapter.notifyDataSetChanged();     // force layout managers to rebind and relayout
-                        }
-
-
+                        Log.e("Firestore Error",error.getMessage());
+                        return;
                     }
-                });
 
+                    if (!followedOrgs.isEmpty()) {followedOrgs.clear();}
+                    followedOrgs = (ArrayList<String>) value.get("followedClubs");
+                    filterEventList();
+                    adapterPersonal.notifyDataSetChanged();
+                }
+            });
+    }
+
+    private void eventChange()
+    {
+        db.collection("/Events")
+            .addSnapshotListener(new EventListener<QuerySnapshot>()
+            {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error)
+                {
+                    if(error != null)
+                    {
+                        Log.e("Firestore Error",error.getMessage());
+                        return;
+                    }
+
+                    for(DocumentChange dc : value.getDocumentChanges())
+                    {
+                        if(dc.getType() == DocumentChange.Type.ADDED)
+                        {
+                            events.add(dc.getDocument().toObject(Event.class));
+                        }
+                        adapter.notifyDataSetChanged();
+                        filterEventList();
+                        adapterPersonal.notifyDataSetChanged();
+                    }
+                }
+            });
+
+    }
+
+    private void filterEventList() {
+        if (!followedOrgEvents.isEmpty()) {followedOrgEvents.clear();}
+        if (followedOrgs == null) {return;}
+        for (Event e : events) {
+            if (followedOrgs.contains(e.e_org)) {
+                followedOrgEvents.add(e);
+            }
+        }
     }
 
 }
