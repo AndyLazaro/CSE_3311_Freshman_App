@@ -3,12 +3,15 @@ package com.example.cse_3311_freshman_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.EditText;
 import android.net.Uri;
@@ -16,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -40,6 +44,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
@@ -48,7 +53,8 @@ import java.util.concurrent.TimeUnit;
 public class PostActivity extends AppCompatActivity {
     Button post_backBtn, post_attachBtn, post_postBtn;
     private ImageView captureImage;
-    EditText post_des, post_location, post_name, post_org;
+    EditText post_des, post_location, post_name, post_org, post_date, post_time;
+    Calendar dateCal, timeCal, dateTimeCal;
     int SELECT_PICTURE = 200;
 
     String image_URL;
@@ -78,6 +84,8 @@ public class PostActivity extends AppCompatActivity {
         post_location = findViewById(R.id.post_location);
         post_name = findViewById(R.id.post_name);
         post_org = findViewById(R.id.post_org);
+        post_date = findViewById(R.id.post_date);
+        post_time = findViewById(R.id.post_time);
 
         post_backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +102,6 @@ public class PostActivity extends AppCompatActivity {
                 String image_name = "";
                 imageChooser();
             }
-
-
         });
 
         //------------------Unfinished-----------------------------------
@@ -109,7 +115,7 @@ public class PostActivity extends AppCompatActivity {
                 location = post_location.getEditableText().toString();
 
                 //String img_data = getImgString(captureImage);
-                timestamp = Timestamp.now();
+                //timestamp = Timestamp.now();
 
                 // upload image
                 upload_image();
@@ -119,24 +125,48 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    private String getImgString(ImageView img){//convert image to string format
-        String img_string = null;
-        Bitmap bmp = null;
-        ByteArrayOutputStream bos = null;
-        byte[] bt = null;
+    public void getDate (View v)
+    {
+        dateCal = Calendar.getInstance();
 
-        try{
-            img.buildDrawingCache();
-            bmp = img.getDrawingCache();//convert img to bitmap
-            bos = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bt = bos.toByteArray();
-            img_string = Base64.encodeToString(bt, Base64.DEFAULT);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return img_string;
+        int year = dateCal.get(Calendar.YEAR);
+        int month = dateCal.get(Calendar.MONTH);
+        int day = dateCal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+
+                        post_date.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year);
+
+                    }
+                }, year, month, day);
+        datePickerDialog.show();
+    }
+
+    public void getTime (View v)
+    {
+        timeCal = Calendar.getInstance();
+
+        int hour = timeCal.get(Calendar.HOUR_OF_DAY);
+        int minute = timeCal.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        String ampm = (hourOfDay>11 || hourOfDay==0) ? "PM" : "AM";
+                        if (hourOfDay>12) {hourOfDay-=12;}
+                        String min = (minute<10) ? "0" + minute : String.valueOf(minute);
+                        post_time.setText(hourOfDay + ":" + min + " " + ampm);
+                    }
+                }, hour, minute, false);
+        timePickerDialog.show();
     }
 
     void imageChooser()
@@ -213,6 +243,16 @@ public class PostActivity extends AppCompatActivity {
                         image_URL = downloadUri.toString();
                         Toast.makeText(PostActivity.this, "Image upload success.", Toast.LENGTH_SHORT).show();
 
+                        int year = dateCal.get(Calendar.YEAR);
+                        int month = dateCal.get(Calendar.MONTH);
+                        int day = dateCal.get(Calendar.DAY_OF_MONTH);
+                        int hour = timeCal.get(Calendar.HOUR_OF_DAY);
+                        int minute = timeCal.get(Calendar.MINUTE);
+                        dateTimeCal = Calendar.getInstance();
+                        dateTimeCal.set(year, month, day, hour, minute);
+                        Date date = dateTimeCal.getTime();
+                        Timestamp timestamp = new Timestamp(date);
+
                         // complete post
                         Event post_event = new Event(name, org, description, location, timestamp, image_URL);
                         db_ref.add(post_event);//post the event data to database
@@ -237,7 +277,6 @@ public class PostActivity extends AppCompatActivity {
             int index = (int) (rnd.nextFloat() * CHARS.length());
             name.append(CHARS.charAt(index));
         }
-        String name_string = name.toString();
-        return name_string;
+        return name.toString();
     }
 }
