@@ -127,6 +127,15 @@ public class Profile_Page extends AppCompatActivity {
                 startActivity(getIntent());//start current activity again
             }
         });
+//-----------Search Clubs button-------------------------------------------------
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), SearchClubActivity.class);
+                startActivity(intent);
+            }
+        });
 //-----------App crashes when post button is pressed; needs work. Fixed---------
         postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
